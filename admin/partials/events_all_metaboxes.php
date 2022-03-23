@@ -755,7 +755,7 @@ function event_attendee_limit_function() {
 
 	$event_attendee_limit_count = get_post_meta( $post->ID, 'event_attendee_limit_count', true );
 	?>
-		<input type="number" name="event_attendee_limit_count" class="event_attendee_limit_count" value="<?php echo isset( $event_attendee_limit_count ) ? esc_html( $event_attendee_limit_count ) : ""; ?>">
+		<input type="number" name="event_attendee_limit_count" min="0" class="event_attendee_limit_count" value="<?php echo isset( $event_attendee_limit_count ) ? esc_html( $event_attendee_limit_count ) : ""; ?>">
 		<br><br>
 		<span><i>If you have limited the number of attendees, please enter a ‘Registration Closed’ message.</i></span>
 	<?php
