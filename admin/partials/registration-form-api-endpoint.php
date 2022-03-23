@@ -90,7 +90,7 @@ function register_attendee( $request ) {
 	$status = get_post_status( $event_id );	
 
 	$event_title = get_post_meta( $event_id, 'dffmain_post_title', true );
-	if ( 'publish' !== $status || empty( 'dffmain_post_title' ) ) {
+	if ( 'publish' !== $status || empty( $event_title ) ) {
 		return new \WP_REST_Response(
 			array(
 				'status'  => 404,

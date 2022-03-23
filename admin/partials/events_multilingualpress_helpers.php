@@ -1034,10 +1034,10 @@ function update_common_meta_fields( $translations, $source_site_id, $source_post
     $event_security_code = $post_metas['event_security_code'][0];
 
     // Reminder date
-    $event_reminder_date = $post_metas['dffmain_post_title'][0];
+    $event_reminder_date = $post_metas['event_reminder_date'][0];
 
     // Special instruction
-    $event_special_instruction = $post_metas['event_reminder_date'][0];
+    $event_special_instruction = $post_metas['event_special_instruction'][0];
 
     // Google maps embeded code
     $google_embed_maps_code = $post_metas['google_embed_maps_code'][0];
