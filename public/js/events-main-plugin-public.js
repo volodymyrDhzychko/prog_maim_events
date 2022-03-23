@@ -398,8 +398,13 @@
                                 }
                             } else {
                                 let regex = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
-                                if (!regex.test($(this).find('input[type="mobile-number"]').val())
+                                if (regex.test($(this).find('input[type="mobile-number"]').val())
                                 && $(this).find('input[type="mobile-number"]').val().length < 16) {
+                                    errorCount--;
+                                    $(this).addClass('valid');
+                                    $(this).removeClass('invalid');
+                                    $(this).find('.field-label').append('<span class="validate">' + validateMessage + '</span>');
+                                } else {
                                     errorCount++;
                                     $(this).addClass('invalid');
                                     $(this).removeClass('valid');
@@ -408,11 +413,6 @@
                                     } else {
                                         $(this).find('.field-label').append('<span class="not-validate">Please enter a valid mobile number.</span>');
                                     }
-                                } else {
-                                    errorCount--;
-                                    $(this).addClass('valid');
-                                    $(this).removeClass('invalid');
-                                    $(this).find('.field-label').append('<span class="validate">' + validateMessage + '</span>');
                                 }
                             }
                         } else if (0 < $(this).find('input[type="url"]').length) {
