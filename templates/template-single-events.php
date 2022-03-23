@@ -209,11 +209,12 @@ if ( isset( $language ) && ! empty( $language ) ) {
 			} else {
 				if ( 'true' === $field_preference[ $name ] ) {
 					if ( 'Text Input' === $field_arr['control'] ) {
+						$min = 'number' == $field_arr['type']  ? ' min="0"' : '';
 						$field_html .= '<div class="field-wrap' . $required_class . '">
                                             <div class="field-container' . $class_name . '">
                                                 <span class="field-label">' . $field_arr['label'] . $required_field . '</span>
                                                 <label class="screen-reader-text" for="' . $field_arr['id'] . '">' . $field_arr['id'] . '</label>
-                                                <input type="' . $field_arr['type'] . '" name="' . $field_arr['id'] . '" id="' . $field_arr['id'] . '">
+                                                <input type="' . $field_arr['type'] . '" name="' . $field_arr['id'] . '" id="' . $field_arr['id'] . '"' . $min . '>
                                             </div>
                                         </div>';
 					} elseif ( 'Text Area' === $field_arr['control'] ) {
@@ -399,6 +400,7 @@ if ( isset( $language ) && ! empty( $language ) ) {
 			'onchange'          => array(),
 			'style'             => array(),
 			'onclick'           => array(),
+			'min'               => array(),
 		),
 		'textarea' => array(
 			'id'    => array(),

@@ -29,6 +29,19 @@
                     return false;
                 }
             });
+
+            $('input[type="number"]').keypress(function (e) {
+                if(!((e.keyCode > 95 && e.keyCode < 106) // numpad numbers
+                    || (e.keyCode > 47 && e.keyCode < 58) // numbers
+                    || [8, 9, 35, 36, 37, 39].indexOf(e.keyCode) >= 0 // backspace, tab, home, end, left arrow, right arrow
+                    || (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) // Ctrl/Cmd + A
+                    || (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) // Ctrl/Cmd + C
+                    || (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) // Ctrl/Cmd + X
+                    || (e.keyCode == 86 && (e.ctrlKey === true || e.metaKey === true)) // Ctrl/Cmd + V
+                    )) {
+                    return false;
+                }
+            });
         });
 
         // TODO: spaghetti code.. Should be divided to components for better clarity
