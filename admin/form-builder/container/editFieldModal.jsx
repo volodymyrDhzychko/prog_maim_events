@@ -74,12 +74,11 @@ class EditFieldModal extends Component {
     handleModalClose = (event) => {
         const enArr = this.state.editFieldData[0].en;
         const arArr = this.state.editFieldData[0].ar;
-        if ('' !== enArr.label && '' !== arArr.label) { 
+        if ('' !== enArr.label && '' !== arArr.label && 0 < enArr.values.length && 0 < arArr.values.length) { 
             this.props.handleEditModelClose();
         } else {
             this.setState({errorMsg: true});
         }
-
     };
 
     camelCase = (str) => {
