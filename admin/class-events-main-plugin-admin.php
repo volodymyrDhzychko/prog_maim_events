@@ -693,9 +693,11 @@ class Events_Main_Plugin_Admin {
 		$subject_event_cancel_arr  = main_site_get_option( 'subject_event_cancel' );
 		$dffmain_event_content_arr = main_site_get_option( 'events_content_event_cancel' );
 
+		$dffmain_post_title = get_the_title( $post_id );
+
 		$post_metas = get_post_meta( $post_id );
 		
-		$dffmain_post_title      = $post_metas['dffmain_post_title'][0];
+		// $dffmain_post_title      = $post_metas['dffmain_post_title'][0]; TODO remove arter testing
 		$event_date              = $post_metas['event_date_select'][0];  
 		$event_end_date          = $post_metas['event_end_date_select'][0];
 		$event_time_start_select = $post_metas['event_time_start_select'][0];
@@ -1009,7 +1011,7 @@ class Events_Main_Plugin_Admin {
 
 		if ( !ms_is_switched() ) {
 
-			$dffmain_post_title = filter_input( INPUT_POST, 'dffmain_post_title', FILTER_SANITIZE_STRING );
+			$dffmain_post_title = filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING );
 			$dffmain_post_title = isset( $dffmain_post_title ) ? esc_html( $dffmain_post_title ) : '';
 			$dffmain_events_overview = isset( $_POST['events_overview'] ) ? wp_kses_post( $_POST['events_overview'] ) : '';
 			$dffmain_events_agenda = isset( $_POST['dffmain_events_agenda'] ) ? wp_kses_post( $_POST['dffmain_events_agenda'] ) : '';
@@ -1897,7 +1899,7 @@ class Events_Main_Plugin_Admin {
 
 		$postID = dffmain_is_var_empty( filter_input( INPUT_POST, 'postID', FILTER_SANITIZE_NUMBER_INT ) );
 
-		$dffmain_post_title = dffmain_is_var_empty( filter_input( INPUT_POST, 'dffmain_post_title', FILTER_SANITIZE_STRING ) );
+		$dffmain_post_title = dffmain_is_var_empty( filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING ) );
 
 		$events_overview = isset( $_POST['events_overview'] ) ? $_POST['events_overview'] : '';
 
@@ -1998,7 +2000,7 @@ class Events_Main_Plugin_Admin {
 					$tmp_arr[$loop_site_id]['curr_title']    = $curr_title;
 					$tmp_arr[$loop_site_id]['curr_location'] = $curr_location;
 				}else {
-					$curr_title = multisite_post_meta( $loop_site_id, $loop_post_id, 'dffmain_post_title' );
+					$curr_title    = multisite_post_meta( $loop_site_id, $loop_post_id, 'dffmain_post_title' );
 					$curr_location = multisite_post_meta( $loop_site_id, $loop_post_id, 'dffmain_event_location' );
 
 					$tmp_arr[$loop_site_id]['curr_title'] = $curr_title;

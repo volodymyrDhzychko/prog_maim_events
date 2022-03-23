@@ -82,7 +82,7 @@ function tab_editor_function() {
 		</div>
 
 		<div class="tabcontent" id="main" style="display: block;">
-			<div class="event_titlediv">
+			<!--TODO remove arter testing <div class="event_titlediv">
 				<input 
 					type="text" 
 					name="dffmain_post_title" 
@@ -91,10 +91,10 @@ function tab_editor_function() {
 					spellcheck="true" 
 					autocomplete="off"
 					class="" 
-					value="<?php echo esc_attr( $dffmain_post_title ); ?>"
+					value="<?php // echo esc_attr( $dffmain_post_title ); ?>"
 					placeholder="Enter Title Here"
 				/>
-			</div>
+			</div> -->
 			<div class="heading_section">
 				<h3>
 					Overview: <span>event</span>
