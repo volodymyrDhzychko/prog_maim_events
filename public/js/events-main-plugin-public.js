@@ -410,9 +410,11 @@
                                     $(this).find('.field-label').append('<span class="not-validate">Please enter your mobile number.</span>');
                                 }
                             } else {
-                                let regex = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+                                let regex = /^[\+]?([0-9][\s]?|[0-9]?)([(][0-9]{3}[)][\s]?|[0-9]{3}[-\s\.]?)[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+                                let rawNumber = $(this).find('input[type="mobile-number"]').val();
+                                let numbersOnly = rawNumber.replace(/\D/g,'');
                                 if (regex.test($(this).find('input[type="mobile-number"]').val())
-                                && $(this).find('input[type="mobile-number"]').val().length < 16) {
+                                    && numbersOnly.length < 16) {
                                     errorCount--;
                                     $(this).addClass('valid');
                                     $(this).removeClass('invalid');
