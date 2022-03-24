@@ -155,6 +155,9 @@ class Events_Main_Plugin_Admin {
 		add_action('multilingualpress.metabox_after_relate_posts', array( $this, 'copy_on_multilingual_add_translation' ), 10, 2);
 		add_action( 'wp_insert_post', array( $this, 'update_common_meta_fields' ) );
 
+		// redirect event_manager user to All Events dashboard page after login
+		add_filter( 'login_redirect', array( $this, 'login_redirect_event_manager_to_events_list' ), 10, 3 );
+
 	}
 
 	/**
@@ -2576,6 +2579,26 @@ class Events_Main_Plugin_Admin {
 		}
 
 		wp_die();
+	}
+
+	/**
+	 * Redirect event_manager user after login
+	 *
+	 * @param [string] $redirect_to
+	 * @param [string] $request
+	 * @param [WP_User|WP_Error] $user
+	 * 
+	 * @return void
+	 */
+	public function login_redirect_event_manager_to_events_list( $redirect_to, $request, $user ) {
+
+		if( isset($user->roles) && is_array($user->roles) && in_array( 'event_manager', $user->roles ) ) {
+			$redirect_to = get_admin_url() . 'edit.php?post_type=dffmain-events';
+	
+			wp_safe_redirect( $redirect_to );
+			exit;
+		}
+		return $redirect_to;
 	}
 
 }
