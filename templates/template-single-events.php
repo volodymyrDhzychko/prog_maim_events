@@ -58,8 +58,20 @@ if ( isset( $language ) && ! empty( $language ) ) {
 	$emp_tags              = '';
 	$event_details_heading = '';
 
-	$field_preference         = dffmain_is_var_empty( $meta['_wp_field_preference'][0] );
+	$field_preference         = get_post_meta( $event_id, '_wp_field_preference', true );
 	$field_preference         = maybe_unserialize( $field_preference );
+	if ( $current_is_rtl ) {
+
+		foreach ( $field_preference as $id => $bool ) {
+
+			$ar_id = substr_replace( $id, 'ar', 0, 2 );
+			$field_preference[$ar_id] = $field_preference[$id];
+			unset( $field_preference[$id] );
+		}
+	}
+
+
+
 	$registration_template_id = dffmain_is_var_empty(  $meta['_wp_template_id'][0] );
 	$event_security_code      = dffmain_is_var_empty(  $meta['event_security_code'][0] );
 	$security_code_checkbox   = dffmain_is_var_empty( $meta['security_code_checkbox'][0] );

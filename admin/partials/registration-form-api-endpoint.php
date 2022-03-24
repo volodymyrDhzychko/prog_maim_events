@@ -460,8 +460,6 @@ function save_registration_form_for_event_callback() {
 
 		$saved_template_id = get_post_meta( $post_id, '_wp_template_id', true );
 
-
-
 		if ( isset( $field_preference ) && ! empty( $field_preference ) ) {
 			$field_preference_arr = array();
 			foreach ( $field_preference as $val ) {
