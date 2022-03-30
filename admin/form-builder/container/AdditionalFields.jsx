@@ -145,6 +145,7 @@ class AdditionalFields extends Component {
         let editFieldData = [];
         editFieldData.push(this.state.addtionalFieldsObj[currentIndex]);
         this.setState({editModalField: true, editFieldData: editFieldData, editIndex: currentIndex});
+        window.localStorage.setItem('baseState', JSON.stringify(this.state.addtionalFieldsObj[currentIndex]));
     };
     handleEditModelClose = () => {
         this.setState({editModalField: false});
