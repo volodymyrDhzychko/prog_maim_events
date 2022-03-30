@@ -735,29 +735,29 @@ function registration_form_dropdown_select( $en_arr, $ar_arr, $check_html, $requ
  */
 function registration_form_radio( $en_arr, $ar_arr, $check_html, $required_field, $en_option_html, $ar_option_html ) {
 
-    $html =     '<div class="field-wrap">';
-    $html .=        '<div class="select_field_checkbox">';
-    $html .=            '<div class="display-filed-checkbox">';
-    $html .=                '<label for="checkbox_' . $en_arr['id'] . '">';
-    $html .=                    '<input ' . $check_html . ' name="checkbox_' . $en_arr['id'] . '" id="checkbox_' . $html .=$en_arr['id'] . '" type="checkbox">';
-    $html .=                '</label>';
-    $html .=            '</div>';
-    $html .=        '</div>';
-    $html .=        '<div class="field-inner">';
-    $html .=            '<div class="field-container en-field">';
-    $html .=                '<span class="field-label">' . $en_arr['label'] . $required_field . '</span>';
-    $html .=                '<div class="radio-group">';
-    $html .=                    $en_option_html;
-    $html .=                '</div>';
-    $html .=            '</div>';
-    $html .=            '<div class="field-container ar-field">';
-    $html .=                '<span class="field-label">' . $ar_arr['label'] . $required_field . '</span>';
-    $html .=                '<div class="radio-group">';
-    $html .=                    $ar_option_html;
-    $html .=                '</div>';
-    $html .=            '</div>';
-    $html .=        '</div>';
-    $html .=    '</div>';
+	$html = 	'<div class="field-wrap">';
+	$html .=		'<div class="select_field_checkbox">';
+	$html .=			'<div class="display-filed-checkbox">';
+	$html .=				'<label for="checkbox_' . $en_arr['id'] . '">';
+	$html .=					'<input ' . $check_html . ' name="checkbox_' . $en_arr['id'] . '" id="checkbox_' . $en_arr['id'] . '" type="checkbox">';
+	$html .=				'</label>';
+	$html .=			'</div>';
+	$html .=		'</div>';
+	$html .=		'<div class="field-inner">';
+	$html .=			'<div class="field-container en-field">';
+	$html .=				'<span class="field-label">' . $en_arr['label'] . $required_field . '</span>';
+	$html .=				'<div class="radio-group">';
+	$html .=					$en_option_html;
+	$html .=				'</div>';
+	$html .=			'</div>';
+	$html .=			'<div class="field-container ar-field">';
+	$html .=				'<span class="field-label">' . $ar_arr['label'] . $required_field . '</span>';
+	$html .=					'<div class="radio-group">';
+	$html .=						$ar_option_html;
+	$html .=					'</div>';
+	$html .=			'</div>';
+	$html .=		'</div>';
+	$html .=	'</div>';
 
     return  $html;
 }
