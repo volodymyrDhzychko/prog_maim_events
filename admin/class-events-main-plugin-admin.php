@@ -1014,21 +1014,19 @@ class Events_Main_Plugin_Admin {
 
 		if ( !ms_is_switched() ) {
 
-			$dffmain_post_title = filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING );
-			$dffmain_post_title = isset( $dffmain_post_title ) ? esc_html( $dffmain_post_title ) : '';
+			$dffmain_post_title = dffmain_is_var_empty( filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING ) );
+
 			$dffmain_events_overview = isset( $_POST['events_overview'] ) ? wp_kses_post( $_POST['events_overview'] ) : '';
 			$dffmain_events_agenda = isset( $_POST['dffmain_events_agenda'] ) ? wp_kses_post( $_POST['dffmain_events_agenda'] ) : '';
 			$dffmain_event_location = isset( $_POST['dffmain_event_location'] ) ? wp_kses_post( $_POST['dffmain_event_location'] ) : '';
 
 			// terms
-			$emp_category = filter_input( INPUT_POST, 'emp_category', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-			$emp_category = isset( $emp_category ) ? $emp_category : '';
+			$emp_category = dffmain_is_var_empty( filter_input( INPUT_POST, 'emp_category', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
 			if ( isset( $emp_category ) && ! empty( $emp_category ) ) {
 				$emp_category = implode( ',', $emp_category );
 			}
 
-			$emp_tags = filter_input( INPUT_POST, 'emp_tags', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-			$emp_tags = isset( $emp_tags ) ? $emp_tags : '';
+			$emp_tags = dffmain_is_var_empty( filter_input( INPUT_POST, 'emp_tags', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
 			if ( isset( $emp_tags ) && ! empty( $emp_tags ) ) {
 				$emp_tags = implode( ',', $emp_tags );
 			}
@@ -1062,7 +1060,6 @@ class Events_Main_Plugin_Admin {
 			$event_time_end_select = filter_input( INPUT_POST, 'event_time_end_select', FILTER_SANITIZE_STRING );
 			$event_time_end_select = isset( $event_time_end_select ) ? esc_html( $event_time_end_select ) : '';
 
-
 			// Google map settings
 			$event_google_map_input = filter_input( INPUT_POST, 'event_google_map_input', FILTER_SANITIZE_STRING );
 			$event_google_map_input = isset( $event_google_map_input ) ? esc_html( $event_google_map_input ) : '';
@@ -1076,7 +1073,6 @@ class Events_Main_Plugin_Admin {
 			$security_code_checkbox = isset( $security_code_checkbox ) ? $security_code_checkbox : '';
 			$event_security_code = filter_input( INPUT_POST, 'event_security_code', FILTER_SANITIZE_STRING );
 			$event_security_code = isset( $event_security_code ) ? $event_security_code : '';
-
 
 			// Reminder date
 			$date = date( $event_date_select );
@@ -1101,13 +1097,9 @@ class Events_Main_Plugin_Admin {
 			);
 			$google_embed_maps_code = isset( $_POST['google_embed_maps_code'] ) ? wp_kses( $_POST['google_embed_maps_code'], $allow_tags ) : "";
 			
-			
-
 			// Attendee meta data
-			$event_attendee_limit_count = filter_input( INPUT_POST, 'event_attendee_limit_count', FILTER_SANITIZE_STRING );
-			$event_attendee_limit_count = isset( $event_attendee_limit_count ) ? $event_attendee_limit_count : '';
-			$event_registration_close_message = filter_input( INPUT_POST, 'event_registration_close_message', FILTER_SANITIZE_STRING );
-			$event_registration_close_message = isset( $event_registration_close_message ) ? $event_registration_close_message : '';
+			$event_attendee_limit_count       = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_attendee_limit_count', FILTER_SANITIZE_STRING ) );
+			$event_registration_close_message = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_registration_close_message', FILTER_SANITIZE_STRING ) );
 
 			$meta_values = [
 				'dffmain_post_title'               => $dffmain_post_title,
@@ -1902,12 +1894,9 @@ class Events_Main_Plugin_Admin {
 
 		$postID = dffmain_is_var_empty( filter_input( INPUT_POST, 'postID', FILTER_SANITIZE_NUMBER_INT ) );
 
-		$dffmain_post_title = dffmain_is_var_empty( filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING ) );
-
-		$events_overview = isset( $_POST['events_overview'] ) ? $_POST['events_overview'] : '';
-
-		$dffmain_events_agenda = isset( $_POST['dffmain_events_agenda'] ) ? $_POST['dffmain_events_agenda'] : '';
-
+		$dffmain_post_title     = dffmain_is_var_empty( filter_input( INPUT_POST, 'post_title', FILTER_SANITIZE_STRING ) );
+		$events_overview        = isset( $_POST['events_overview'] ) ? $_POST['events_overview'] : '';
+		$dffmain_events_agenda  = isset( $_POST['dffmain_events_agenda'] ) ? $_POST['dffmain_events_agenda'] : '';
 		$dffmain_event_location = isset( $_POST['dffmain_event_location'] ) ? $_POST['dffmain_event_location'] : '';
 
 		$emp_category = filter_input( INPUT_POST, 'emp_category', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
@@ -1923,15 +1912,92 @@ class Events_Main_Plugin_Admin {
 		wp_set_post_terms( $postID, $emp_category, 'events_categories', false );
 		wp_set_post_terms( $postID, $emp_tags, 'events_tags', false );
 
+        $event_cost_name = filter_input( INPUT_POST, 'event_cost_name', FILTER_SANITIZE_STRING );
+        $event_cost_name = isset( $event_cost_name ) ? esc_html( $event_cost_name ) : '';
 
-		$meta_values = [
-			'dffmain_post_title' => $dffmain_post_title,
-			'events_overview' => $events_overview,
-			'dffmain_events_agenda' => $dffmain_events_agenda,
-			'dffmain_event_location' => $dffmain_event_location,
-			'emp_category' => $emp_category,
-			'emp_tags' => $emp_tags,
-		];
+        // Event Reminder settings
+        $event_reminder_select_box = filter_input( INPUT_POST, 'event_reminder_select_box', FILTER_SANITIZE_STRING );
+        $event_reminder_select_box = isset( $event_reminder_select_box ) ? esc_html( $event_reminder_select_box ) : '';
+
+        // Date settings
+        $event_date_select = filter_input( INPUT_POST, 'event_date_select', FILTER_SANITIZE_STRING );
+        $event_date_select = isset( $event_date_select ) ? esc_html( $event_date_select ) : '';
+
+        // End date settings
+        $event_end_date_select = filter_input( INPUT_POST, 'event_end_date_select', FILTER_SANITIZE_STRING );
+        $event_end_date_select = isset( $event_end_date_select ) ? esc_html( $event_end_date_select ) : '';
+
+        // Time settings
+        $event_time_start_select = filter_input( INPUT_POST, 'event_time_start_select', FILTER_SANITIZE_STRING );
+        $event_time_start_select = isset( $event_time_start_select ) ? esc_html( $event_time_start_select ) : '';
+        $event_time_end_select = filter_input( INPUT_POST, 'event_time_end_select', FILTER_SANITIZE_STRING );
+        $event_time_end_select = isset( $event_time_end_select ) ? esc_html( $event_time_end_select ) : '';
+
+        // Google map settings
+        $event_google_map_input = filter_input( INPUT_POST, 'event_google_map_input', FILTER_SANITIZE_STRING );
+        $event_google_map_input = isset( $event_google_map_input ) ? esc_html( $event_google_map_input ) : '';
+
+        // Detail image
+        $meta_key = filter_input( INPUT_POST, 'event_detail_img', FILTER_SANITIZE_STRING );
+        $meta_key = isset( $meta_key ) ? $meta_key : '';
+
+        // Security Code Setting
+        $security_code_checkbox = filter_input( INPUT_POST, 'security_code_checkbox', FILTER_SANITIZE_STRING );
+        $security_code_checkbox = isset( $security_code_checkbox ) ? $security_code_checkbox : '';
+        $event_security_code = filter_input( INPUT_POST, 'event_security_code', FILTER_SANITIZE_STRING );
+        $event_security_code = isset( $event_security_code ) ? $event_security_code : '';
+
+        // Reminder date
+        $date = date( $event_date_select );
+        $event_reminder_date = date( 'Y-m-d', strtotime( $date . ' - ' . $event_reminder_select_box . ' days' ) );
+
+
+        // Special instruction
+        $event_special_instruction = filter_input( INPUT_POST, 'event_special_instruction', FILTER_SANITIZE_STRING );
+        $event_special_instruction = isset( $event_special_instruction ) ? $event_special_instruction : '';
+
+        $allow_tags = array(
+            'iframe' => array(
+                'src'             => array(),
+                'width'           => array(),
+                'height'          => array(),
+                'frameborder'     => array(),
+                'style'           => array(),
+                'allowfullscreen' => array(),
+                'aria-hidden'     => array(),
+                'tabindex'        => array(),
+            ),
+        );
+        $google_embed_maps_code = isset( $_POST['google_embed_maps_code'] ) ? wp_kses( $_POST['google_embed_maps_code'], $allow_tags ) : "";
+        
+        // Attendee meta data
+        $event_attendee_limit_count       = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_attendee_limit_count', FILTER_SANITIZE_STRING ) );
+        $event_registration_close_message = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_registration_close_message', FILTER_SANITIZE_STRING ) );
+
+        $meta_values = [
+            'dffmain_post_title'               => $dffmain_post_title,
+            'events_overview'                  => $dffmain_events_overview,
+            'dffmain_events_agenda'            => $dffmain_events_agenda,
+            'dffmain_event_location'           => $dffmain_event_location,
+            'emp_category'                     => $emp_category,
+            'emp_tags'                         => $emp_tags,
+            'event_cost_name'                  => $event_cost_name,
+            'event_reminder_select_box'        => $event_reminder_select_box,
+            'event_date_select'                => $event_date_select,
+            'event_end_date_select'            => $event_end_date_select,
+            'event_time_start_select'          => $event_time_start_select,
+            'event_time_end_select'            => $event_time_end_select,
+            'event_google_map_input'           => $event_google_map_input,
+            'event_detail_img'                 => sanitize_text_field( $meta_key ),
+            'security_code_checkbox'           => $security_code_checkbox,
+            'event_security_code'              => $event_security_code,
+            'event_reminder_date'              => $event_reminder_date,
+            'event_special_instruction'        => $event_special_instruction,
+            'google_embed_maps_code'           => $google_embed_maps_code,
+            'event_attendee_limit_count'       => $event_attendee_limit_count,
+            'event_registration_close_message' => $event_registration_close_message,
+        ];
+
 		$add_to_post = [
 			'ID'           => $postID,
 			'meta_input'=> $meta_values
