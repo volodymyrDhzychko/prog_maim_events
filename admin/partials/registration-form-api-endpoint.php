@@ -701,7 +701,7 @@ function registration_form_dropdown_select( $en_arr, $ar_arr, $check_html, $requ
     $html .=                '<span class="field-label">' . $en_arr['label'] . $required_field . '</span>';
     $html .=                '<label for="' . $en_arr['id'] . '">';
     $html .=                    '<select name="' . $en_arr['id'] . '" id="' . $en_arr['id'] . '" ' . $multiple . '>';
-    $html .=                        '<option>Choose</option>';
+    // $html .=                        '<option>Choose</option>';
     $html .=                        $en_option_html;
     $html .=                    '</select>';
     $html .=                '</label>';
@@ -710,7 +710,7 @@ function registration_form_dropdown_select( $en_arr, $ar_arr, $check_html, $requ
     $html .=            '<span class="field-label">' . $ar_arr['label'] . $required_field . '</span>';
     $html .=                '<label for="' . $ar_arr['id'] . '">';
     $html .=                    '<select name="' . $ar_arr['id'] . '" id="' . $ar_arr['id'] . '" ' . $multiple . '>';
-    $html .=                        '<option>أختر</option>';
+    // $html .=                        '<option>أختر</option>';
     $html .=                        $ar_option_html;
     $html .=                    '</select>';
     $html .=                '</label>';

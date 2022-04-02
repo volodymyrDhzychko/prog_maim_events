@@ -240,7 +240,7 @@ if ( isset( $language ) && ! empty( $language ) ) {
 					} elseif ( 'Dropdown Select' === $field_arr['control'] ) {
 						$field_options = $field_arr['values'];
 						sort( $field_options );
-						$choose = ( 'en' === $language ) ? 'Choose' : 'أختر';
+						// $choose = ( 'en' === $language ) ? 'Choose' : 'أختر'; <option value="">' . $choose . '</option>
 						if ( $field_arr['multiple'] ) {
 							$multiple = 'multiple';
 						} else {
@@ -257,7 +257,6 @@ if ( isset( $language ) && ! empty( $language ) ) {
                                                     <span class="field-label">' . $field_arr['label'] . $required_field . '</span>
                                                     <label class="screen-reader-text" for="' . $field_arr['id'] . '">' . $field_arr['id'] . '</label>
                                                     <select name="' . $field_arr['id'] . '" id="' . $field_arr['id'] . '" ' . $multiple . '>
-                                                        <option value="">' . $choose . '</option>
                                                         ' . $option_html . '
                                                     </select>
                                                 </div>
