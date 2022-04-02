@@ -343,3 +343,7 @@
 #tab_editor_id .postbox-header {display: none;}
 .event_attendee_limit_count{width: 100%;}
 #event_attendee_limit_message .inside h4 {margin: 5px 0 10px 0;}
+
+/* Event edit page - mandatory fields*/
+#postimagediv h2, #event_date_id h2, #event_end_date_id h2, #event_time_id h2 {color: red;}
+#postimagediv, #event_date_id, #event_end_date_id, #event_time_id, #u2583_input {border-color: red;}
