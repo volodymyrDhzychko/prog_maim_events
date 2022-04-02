@@ -12,6 +12,7 @@ class Main extends Component {
             restUrl: '/wp-json/register-form/v1/',
             registrationFormData: [],
             response: false,
+            isRtl: document.getElementsByTagName("html")[0].getAttribute("dir")=='rtl' ? true : false,
             defaultField: [
                 {
                     'en': {
@@ -225,7 +226,7 @@ class Main extends Component {
         const {response, registrationFormData} = this.state;
         return (
             <div id="registration-template" className="registration-template">
-                <div className="button-wrap">
+                <div className={"button-wrap "  + (isRtl? "float_right":"")}>
                     <button className="button button-primary btn-save" onClick={this.handleSave}>Save</button>
                 </div>
                 <div className="compulsory-field-main">
