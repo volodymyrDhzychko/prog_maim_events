@@ -76,6 +76,13 @@ var $ = jQuery;
 
 jQuery(document).ready(function () {
 
+    // event_attendee_limit_count restrict to only positive numbers
+    jQuery('.event_attendee_limit_count').keypress(function (event) {
+        if (!(event.charCode >= 48 && event.charCode <= 57)) {
+            return false;
+        }
+    });
+
     jQuery('.taxonomy-add-new-cat').click(function () {
         jQuery('#events_categories-add').toggleClass('wp-hidden-child');
     });
