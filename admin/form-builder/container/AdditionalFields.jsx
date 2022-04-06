@@ -279,7 +279,7 @@ class AdditionalFields extends Component {
                                                 <label htmlFor={arArr.id} className="screen-reader-text">{arArr.label}</label>
                                                 <select className={arArr.className} name={arArr.id}
                                                         multiple={arArr.multiple} id={arArr.id}>
-                                                    <option value="">أختر</option>
+                                                    {/* <option value="">أختر</option> */}
                                                     {0 < arArr.values.length && arArr.values.map((optionItem, i) => (
                                                         <option key={i}
                                                                 value={optionItem.value}>{optionItem.value}</option>
