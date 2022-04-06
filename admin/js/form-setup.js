@@ -48,9 +48,15 @@ jQuery(document).ready(function () {
         if (0 !== $('body.post-type-dffmain-events').length) {
             if (0 === $('#set-post-thumbnail img').length) {
                 errorMsgs += '<p>Please set Featured Image.</p>';
+
+                $('#postimagediv h2').addClass('input-event-error');
+                $('#postimagediv').css('border-color', 'red');
             }
             if ('' === jQuery('#event_date_select').val()) {
                 errorMsgs += '<p>Please select Event Date.</p>';
+
+                $('#event_date_id h2').addClass('input-event-error');
+                $('#event_date_id').css('border-color', 'red');
             }
 
             var start_date = Date.parse( jQuery('#event_date_select').val() );
@@ -58,21 +64,38 @@ jQuery(document).ready(function () {
 
             if ( end_date <= start_date ) {
                 errorMsgs += "<p>‘End Date’ should be greater than the ‘Start Date’.</p>";
+
+                $('#event_end_date_id h2').addClass('input-event-error');
+                $('#event_end_date_id').css('border-color', 'red');
             }
 
             if( '' === jQuery('#event_end_date_select').val() ) {
 
                 if ('' === $('.event_time_start_select').val()) {
                     errorMsgs += '<p>Please select Event Start Time.</p>';
+
+                    $('#event_end_date_id h2').addClass('input-event-error');
+                    $('#event_end_date_id').css('border-color', 'red');
+
+                    $('#event_time_id h2').addClass('input-event-error');
+                    $('#event_time_id').css('border-color', 'red');
                 }
                 if ('' === $('.event_time_end_select').val()) {
                     errorMsgs += '<p>Please select Event End Time.</p>';
+
+                    $('#event_end_date_id h2').addClass('input-event-error');
+                    $('#event_end_date_id').css('border-color', 'red');
+
+                    $('#event_time_id h2').addClass('input-event-error');
+                    $('#event_time_id').css('border-color', 'red');
                 }
 
             }
 
             if ('' === $('.registration-form-select select').val()) {
                 errorMsgs += '<p>Please select a registration template.</p>';
+
+                $('#u2583_input').css('border-color', 'red');
             }
             
         }

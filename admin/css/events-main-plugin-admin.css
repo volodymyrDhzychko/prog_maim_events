@@ -345,8 +345,9 @@
 #event_attendee_limit_message .inside h4 {margin: 5px 0 10px 0;}
 
 /* Event edit page - mandatory fields */
-#postimagediv .input-event-error, #event_date_id h2, #event_end_date_id h2, #event_time_id h2 {color: red;}
-#postimagediv, #event_date_id, #event_end_date_id, #event_time_id, #u2583_input {border-color: red;}
+#postimagediv .input-event-error, #event_date_id .input-event-error, #event_end_date_id .input-event-error, #event_time_id .input-event-error {color: red;}
+
+/* #postimagediv .input-event-border-error, #event_date_id .input-event-border-error, #event_end_date_id .input-event-border-error, #event_time_id .input-event-border-error, #u2583_input .input-event-border-error {border-color: red;} */
 
 /* RTL styles*/
 .float_right {float: left!important;}
