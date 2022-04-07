@@ -436,7 +436,7 @@ class Events_Main_Plugin_Admin {
 			'search_items'       => __( 'Search Event', 'events-main-plugin' ),
 			'not_found'          => __( 'Not Found', 'events-main-plugin' ),
 			'not_found_in_trash' => __( 'Not found in Trash', 'events-main-plugin' ),
-			'featured_image'     => __( 'Featured Image', 'events-main-plugin' ),
+			'featured_image'     => __( 'Featured Image*', 'events-main-plugin' ),
 		);
 
 		$args = array(
@@ -845,9 +845,9 @@ class Events_Main_Plugin_Admin {
 		add_meta_box( 'event_cost_id', __( 'Event Cost', 'events-main-plugin' ), 'event_cost_function', 'dffmain-events', 'side', 'low' );
 
 		add_meta_box( 'event_reminder_id', __( 'Event Reminder', 'events-main-plugin' ), 'event_reminder_function', 'dffmain-events', 'side', 'low' );
-		add_meta_box( 'event_date_id', __( 'Event Start Date', 'events-main-plugin' ), 'event_date_function', 'dffmain-events', 'side', 'low' );
-		add_meta_box( 'event_end_date_id', __( 'Event End Date', 'events-main-plugin' ), 'event_end_date_function', 'dffmain-events', 'side', 'low' );
-		add_meta_box( 'event_time_id', __( 'Event Time', 'events-main-plugin' ), 'event_time_function', 'dffmain-events', 'side', 'low' );
+		add_meta_box( 'event_date_id', __( 'Event Start Date*', 'events-main-plugin' ), 'event_date_function', 'dffmain-events', 'side', 'low' );
+		add_meta_box( 'event_end_date_id', __( 'Event End Date*', 'events-main-plugin' ), 'event_end_date_function', 'dffmain-events', 'side', 'low' );
+		add_meta_box( 'event_time_id', __( 'Event Time*', 'events-main-plugin' ), 'event_time_function', 'dffmain-events', 'side', 'low' );
 		add_meta_box( 'event_google_map_id', __( 'Google Maps URL', 'events-main-plugin' ), 'event_google_map_function', 'dffmain-events', 'side', 'low' );
 		
 		add_meta_box( 'event_attendee_limit', __( 'Maximum Attendee of Event', 'events-main-plugin' ), 'event_attendee_limit_function', 'dffmain-events', 'side', 'low' );

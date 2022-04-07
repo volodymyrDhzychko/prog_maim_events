@@ -172,7 +172,7 @@ function tab_editor_function() {
 						<?php if ( ! empty( $template_id ) && 0 < $found_posts ) echo 'disabled'; ?>
 					>
 						<option class="u2583_input_option" value="">
-							Select Registration Template
+							Select Registration Template*
 						</option>
 						<?php
 						$args_register_forms = array(

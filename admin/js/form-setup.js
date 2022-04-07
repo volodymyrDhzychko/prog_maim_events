@@ -72,7 +72,7 @@ jQuery(document).ready(function () {
             if( '' === jQuery('#event_end_date_select').val() ) {
 
                 if ('' === $('.event_time_start_select').val()) {
-                    errorMsgs += '<p>Please select Event Start Time.</p>';
+                    errorMsgs += '<p>Please select Event Start Time. Or set Event end day.</p>';
 
                     $('#event_end_date_id h2').addClass('input-event-error');
                     $('#event_end_date_id').css('border-color', 'red');
@@ -81,7 +81,7 @@ jQuery(document).ready(function () {
                     $('#event_time_id').css('border-color', 'red');
                 }
                 if ('' === $('.event_time_end_select').val()) {
-                    errorMsgs += '<p>Please select Event End Time.</p>';
+                    errorMsgs += '<p>Please select Event End Time. Or set Event end day.</p>';
 
                     $('#event_end_date_id h2').addClass('input-event-error');
                     $('#event_end_date_id').css('border-color', 'red');
