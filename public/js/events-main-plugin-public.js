@@ -59,8 +59,8 @@
             let codeValidateMessage = '';
             let urlValidateMessage = '';
             let emailExistMessage = '';
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
+            const theLanguage = $('html').attr('lang');
+            const lang = theLanguage.slice(0, 2);
             if ('ar' === lang) {
                 notValidateMessage = 'هذه الخانة مطلوبه.';
                 validateMessage = 'موافق';
