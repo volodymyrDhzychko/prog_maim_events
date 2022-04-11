@@ -1098,7 +1098,8 @@ class Events_Main_Plugin_Admin {
 			$google_embed_maps_code = isset( $_POST['google_embed_maps_code'] ) ? wp_kses( $_POST['google_embed_maps_code'], $allow_tags ) : "";
 			
 			// Attendee meta data
-			$event_attendee_limit_count       = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_attendee_limit_count', FILTER_SANITIZE_STRING ) );
+			$event_attendee_limit_count = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_attendee_limit_count', FILTER_SANITIZE_STRING ) );
+			$event_attendee_limit_count = intval($event_attendee_limit_count);
 			$event_registration_close_message = dffmain_is_var_empty( filter_input( INPUT_POST, 'event_registration_close_message', FILTER_SANITIZE_STRING ) );
 
 			$meta_values = [
