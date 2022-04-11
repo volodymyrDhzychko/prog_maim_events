@@ -170,4 +170,4 @@ body.is-loading #adminmenuwrap{opacity:0.7}
 /* End Thank you page*/
 
 /* Single Event page */
-/* .form-control{display: none;} */
+.file-upload-wrap .form-control{display: none;}
