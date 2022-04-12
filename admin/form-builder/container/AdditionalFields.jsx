@@ -15,6 +15,7 @@ class AdditionalFields extends Component {
             editFieldData: [],
             editModalField: false,
             editIndex: 0,
+            isRtl: document.getElementsByTagName("html")[0].getAttribute("dir")=='rtl' ? true : false,
         };
 
     }
@@ -167,7 +168,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field">
-                                                <span className="field-label">{enArr.label}{enArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                     <label htmlFor={enArr.id} className="screen-reader-text">{enArr.label}</label>
                                                     <input
@@ -180,7 +181,7 @@ class AdditionalFields extends Component {
                                                     />
                                             </div>
                                             <div className="field-container ar-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                     <label htmlFor={arArr.id} className="screen-reader-text">{arArr.label}</label>
                                                     <input
@@ -213,7 +214,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field">
-                                                <span className="field-label">{enArr.label}{enArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                     <label htmlFor={enArr.id} className="screen-reader-text">{enArr.label}</label>
                                                        <textarea
@@ -227,7 +228,7 @@ class AdditionalFields extends Component {
                                                        </textarea>
                                             </div>
                                             <div className="field-container ar-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                     <label htmlFor={arArr.id} className="screen-reader-text">{arArr.label}</label>
                                                        <textarea
@@ -261,7 +262,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field">
-                                                <span className="field-label">{enArr.label}{enArr.required && <sup className="medatory"> *</sup>}</span>
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required && <sup className="medatory"> *</sup>}</span>
                                                 <label htmlFor={enArr.id} className="screen-reader-text">{enArr.label}</label>
                                                 <select className={enArr.className} name={enArr.id}
                                                         multiple={enArr.multiple} id={enArr.id}>
@@ -274,7 +275,7 @@ class AdditionalFields extends Component {
                                                 </select>
                                             </div>
                                             <div className="field-container ar-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <label htmlFor={arArr.id} className="screen-reader-text">{arArr.label}</label>
                                                 <select className={arArr.className} name={arArr.id}
@@ -308,7 +309,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field">
-                                                <span className="field-label">{enArr.label}{enArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="radio-group">
                                                     {0 < enArr.values.length && enArr.values.map((optionItem, i) => (
@@ -327,7 +328,7 @@ class AdditionalFields extends Component {
                                                 </div>
                                             </div>
                                             <div className="field-container ar-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="radio-group">
                                                     {0 < arArr.values.length && arArr.values.map((optionItem, i) => (
@@ -366,7 +367,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field">
-                                                <span className="field-label">{enArr.label}{enArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="checkbox-group">
                                                     {0 < enArr.values.length && enArr.values.map((optionItem, i) => (
@@ -385,7 +386,7 @@ class AdditionalFields extends Component {
                                                 </div>
                                             </div>
                                             <div className="field-container ar-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="checkbox-group">
                                                     {0 < arArr.values.length && arArr.values.map((optionItem, i) => (
@@ -424,7 +425,7 @@ class AdditionalFields extends Component {
                                     <div className="field-wrap">
                                         <div className="field-inner">
                                             <div className="field-container en-field full-width-field">
-                                                <span className="field-label">{enArr.label}{enArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}{enArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="field-group">
                                                     <div className="file-upload-wrap">
@@ -465,7 +466,7 @@ class AdditionalFields extends Component {
                                                 </div>
                                             </div>
                                             <div className="field-container ar-field full-width-field">
-                                                <span className="field-label">{arArr.label}{arArr.required &&
+                                                <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}{arArr.required &&
                                                 <sup className="medatory"> *</sup>}</span>
                                                 <div className="field-group">
                                                     <div className="file-upload-wrap">

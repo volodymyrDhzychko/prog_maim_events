@@ -32,8 +32,13 @@
 .registration-template .field-wrap .field-container .field-label{display:inline-block;width:100%;margin-bottom:5px;font-size:13px}
 .registration-template .field-wrap .field-container.en-field{padding:0 25px 0 0}
 .registration-template .field-wrap .field-container.ar-field{padding:0 0 0 25px;direction:rtl}
+
 .registration-template .field-wrap .field-container.en-field .field-label{text-align:left}
 .registration-template .field-wrap .field-container.ar-field .field-label{text-align:right}
+
+.registration-template .field-wrap .field-container.en-field .field-label-rtl{text-align:right!important}
+.registration-template .field-wrap .field-container.ar-field .field-label-rtl{text-align:left!important}
+
 .registration-template .field-wrap .field-container.ar-field select{background-position:5px}
 .registration-template .field-wrap .field-container label{width:100%}
 .registration-template .field-wrap .field-container input{display:inline-block;vertical-align:middle;width:100%;padding:3px 8px;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:14px}
