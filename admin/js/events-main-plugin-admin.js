@@ -372,8 +372,6 @@ jQuery(document).ready(function () {
                 },
                 success: function (data) {
 
-console.log('data', data);
-
                     if (data) {
                         jQuery('.email_history').html(data);
 

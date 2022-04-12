@@ -153,9 +153,7 @@ function tab_editor_function() {
 					id="dffmain_event_location" 
 					class="dffmain_event_location"
 					name="dffmain_event_location"
-				>
-					<?php echo wp_kses_post( $dffmain_event_location ); ?>
-				</textarea>
+				><?php echo wp_kses_post( $dffmain_event_location ); ?></textarea>
 			</label>
 			<div class="save_next_section">
 				<input type="button" name="save_next" class="save_next button-primary" value="Save & Next >" />
@@ -599,9 +597,8 @@ function event_special_instruction_function() {
 		<textarea id="event_special_instruction"
                   name="event_special_instruction"
                   rows="5"
-                  cols="25">
-            <?php echo esc_attr( $event_special_instruction ); ?>
-        </textarea>
+                  cols="25"
+		><?php echo esc_attr( $event_special_instruction ); ?></textarea>
 	</label>
 	<?php
 
@@ -621,9 +618,8 @@ function google_embed_maps_code_function() {
 		<textarea id="google_embed_maps_code"
                   name="google_embed_maps_code"
                   rows="5"
-                  cols="25">
-			<?php echo esc_attr( $google_embed_maps_code ); ?>
-		</textarea>
+                  cols="25"
+		><?php echo esc_attr( $google_embed_maps_code ); ?></textarea>
 	</label>
 	<?php
 
@@ -773,9 +769,8 @@ function event_attendee_limit_message_function() {
 
     <textarea id="event_registration_close_message"
               name="event_registration_close_message"
-              rows="5" cols="25">
-        <?php echo esc_attr( $event_registration_close_message ); ?>
-    </textarea>
+              rows="5" cols="25"
+	><?php echo esc_attr( $event_registration_close_message ); ?></textarea>
 
 	<?php
 }
