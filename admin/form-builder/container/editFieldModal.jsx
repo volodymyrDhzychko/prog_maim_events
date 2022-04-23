@@ -19,6 +19,7 @@ class EditFieldModal extends Component {
             editFieldData: this.props.editFieldData,
             errorMsg: false,
             option: [],
+            baseState: JSON.parse(window.localStorage.getItem('baseState'))
         };
     }
 
@@ -84,7 +85,12 @@ class EditFieldModal extends Component {
     };
 
     handleModalClose = (event) => {
-        this.props.handleEditModelClose();
+        let baseState = [];
+        baseState.push(this.state.baseState);
+        window.localStorage.removeItem('baseState');
+        this.props.handleEditField(baseState);
+
+         this.props.handleEditModelClose();
     };
 
     camelCase = (str) => {
