@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
+import { CheckOption } from './checkOptionWrap.jsx';
 
 class EditFieldModal extends Component {
     constructor(props) {
@@ -18,7 +19,6 @@ class EditFieldModal extends Component {
             editFieldData: this.props.editFieldData,
             errorMsg: false,
             option: [],
-            baseState: JSON.parse(window.localStorage.getItem('baseState'))
         };
     }
 
@@ -45,14 +45,23 @@ class EditFieldModal extends Component {
 
     handleChange = (event) => {
         let editFieldData = this.state.editFieldData;
-        if ('enLabelName' === event.target.name) {
-            editFieldData[0].en.label = event.target.value;
-        } else if ('arLabelName' === event.target.name) {
-            editFieldData[0].ar.label = event.target.value;
-        } else if ('enButtonLabel1' === event.target.name) {
-            editFieldData[0].en.button1 = event.target.value;
-        } else if ('arButtonLabel1' === event.target.name) {
-            editFieldData[0].ar.button1 = event.target.value;
+
+        switch ( event.target.name ) {
+            case 'enLabelName':
+                editFieldData[0].en.label = event.target.value;
+                break;
+
+            case 'arLabelName':
+                editFieldData[0].ar.label = event.target.value;
+                break;
+
+            case 'enButtonLabel1':
+                editFieldData[0].en.button1 = event.target.value;
+                break;
+
+            case 'arButtonLabel1':
+                editFieldData[0].ar.button1 = event.target.value;
+                break;
         }
 
         this.setState({
@@ -64,8 +73,10 @@ class EditFieldModal extends Component {
     onSelectValidationType = (event) => {
         event.preventDefault();
         let editFieldData = this.state.editFieldData;
+
         editFieldData[0].en.type = event.target.value;
         editFieldData[0].ar.type = event.target.value;
+
         this.setState({
             editFieldData: editFieldData
         });
@@ -73,88 +84,96 @@ class EditFieldModal extends Component {
     };
 
     handleModalClose = (event) => {
-        let baseState = [];
-        baseState.push(this.state.baseState);
-        window.localStorage.removeItem('baseState');
-        this.props.handleEditField(baseState);
+        this.props.handleEditModelClose();
     };
 
     camelCase = (str) => {
         return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-            return 0 == index ? word.toLowerCase() : word.toUpperCase();
+            return 0 === index ? word.toLowerCase() : word.toUpperCase();
         }).replace(/\s+/g, '');
     };
 
     handleRequiredCheck = (event) => {
-        let checked = event.target.checked;
         let editFieldData = this.state.editFieldData;
-        editFieldData[0].en.required = checked;
-        editFieldData[0].ar.required = checked;
+
+        editFieldData[0].en.required = event.target.checked;
+        editFieldData[0].ar.required = event.target.checked;
+
         this.setState({
             editFieldData: editFieldData
         });
     };
 
     handleAllowMultiple = (event) => {
-        let checked = event.target.checked;
         let editFieldData = this.state.editFieldData;
-        editFieldData[0].en.multiple = checked;
-        editFieldData[0].ar.multiple = checked;
+
+        editFieldData[0].en.multiple = event.target.checked;
+        editFieldData[0].ar.multiple = event.target.checked;
+
         this.setState({
             editFieldData: editFieldData
         });
     };
 
     handleSaveNewField = (event) => {
-        const enArr = this.state.editFieldData[0].en;
-        const arArr = this.state.editFieldData[0].ar;
-        const option = this.state.option;
+        const enArr          = this.state.editFieldData[0].en;
+        const arArr          = this.state.editFieldData[0].ar;
+        const option         = this.state.option;
         const enOptionValues = this.state.enOptionValues;
         const arOptionValues = this.state.arOptionValues;
+
         this.setState({errorMsg: false});
+        // TODO: If we'll use switch operator - the code will be clearer
         if ('' !== enArr.label && '' !== arArr.label) {
-            if ('Text Input' === enArr.control) {
-                if ('' !== enArr.type) {
-                    this.props.handleEditField(this.state.editFieldData);
-                } else {
-                    this.setState({errorMsg: true});
-                }
-            } else if ('Text Area' === enArr.control) {
-                this.props.handleEditField(this.state.editFieldData);
-            } else if ('Dropdown Select' === enArr.control || 'Radio' === enArr.control || 'Checkbox' === enArr.control) {
-                let optionValueErrorCount = 0;
-                if (0 < enArr.values.length && 0 < arArr.values.length) {
-                    0 < option.length && option.map(( item, index ) => {
-                        if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
-                            optionValueErrorCount++;
-                        }
-                        if( '' === arOptionValues[index] || index  >= arOptionValues.length  || undefined === arOptionValues[index] ){
-                            optionValueErrorCount++;
-                        }
-
-                    });
-
-                    if( 0 === optionValueErrorCount ){
+            switch (enArr.control) {
+                case 'Text Input': {
+                    if ('' !== enArr.type) {
                         this.props.handleEditField(this.state.editFieldData);
-                    }else{
+                    } else {
                         this.setState({errorMsg: true});
                     }
-                } else {
-                    this.setState({errorMsg: true});
+                    break;
                 }
-            } else if ('File Upload' === enArr.control) {
-                const uploadOptions = enArr.uploadOptions;
-                let allowedOption = [];
-                for (let key in uploadOptions) {
-                    if (uploadOptions.hasOwnProperty(key)) {
-                        uploadOptions[key] && allowedOption.push(key);
+                case 'Text Area':
+                    this.props.handleEditField(this.state.editFieldData);
+                    break;
+                case 'Dropdown Select': case 'Radio': case 'Checkbox': {
+                    let optionValueErrorCount = 0;
+                    if (0 < enArr.values.length && 0 < arArr.values.length) {
+                        0 < option.length && option.map(( item, index ) => {
+                            if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
+                                optionValueErrorCount++;
+                            }
+                            if( '' === arOptionValues[index] || index  >= arOptionValues.length  || undefined === arOptionValues[index] ){
+                                optionValueErrorCount++;
+                            }
+
+                        });
+
+                        if( 0 === optionValueErrorCount ){
+                            this.props.handleEditField(this.state.editFieldData);
+                        }else{
+                            this.setState({errorMsg: true});
+                        }
+                    } else {
+                        this.setState({errorMsg: true});
                     }
                 }
-                if ('' !== enArr.button1 && '' !== arArr.button1 && 0 < allowedOption.length) {
-                    this.props.handleEditField(this.state.editFieldData);
-                } else {
-                    this.setState({errorMsg: true});
+                case 'File Upload': {
+                    const uploadOptions = enArr.uploadOptions;
+                    let allowedOption = [];
+                    for (let key in uploadOptions) {
+                        if (uploadOptions.hasOwnProperty(key)) {
+                            uploadOptions[key] && allowedOption.push(key);
+                        }
+                    }
+                    if ('' !== enArr.button1 && '' !== arArr.button1 && 0 < allowedOption.length) {
+                        this.props.handleEditField(this.state.editFieldData);
+                    } else {
+                        this.setState({errorMsg: true});
+                    }
                 }
+
             }
         } else {
             this.setState({errorMsg: true});
@@ -170,9 +189,11 @@ class EditFieldModal extends Component {
             'en': {'label': `Option${optionLength + 1} (English)`},
             'ar': {'label': `Option${optionLength + 1} (Arabic)`}
         });
-        // $('.multiple-option-group').animate({scrollTop: $('.option-wrap:last').offset().top}, 500); // TODO remove ?if uncoment - bug - Can't add fields after deleting it - Registration Form
+        $('.multiple-option-group').animate({scrollTop: $('.option-wrap:last').offset().top}, 500);
         this.setState({option});
     };
+
+    // TODO: Try tto add comments in your code. The general rule - your code should understandable for all new people in a team.. Read book "Чистый код_ создание, анализ и рефакторинг ( PDFDrive ).pdf"
     deleteOption = (event) => {
         const currentIndex = event.currentTarget.attributes.getNamedItem('index').value;
         let editFieldData = this.state.editFieldData;
@@ -230,6 +251,7 @@ class EditFieldModal extends Component {
             this.setState({arOptionValues: optionValues, editFieldData: editFieldData});
         }
     };
+
     handleChangeUploadOption = (event) => {
         let checked = event.target.checked;
         let editFieldData = this.state.editFieldData;
@@ -248,7 +270,7 @@ class EditFieldModal extends Component {
                 <div className="modal-wrap">
                     <div className="modal-inner">
                         <span className="dashicons dashicons-no-alt main-clearbtn"
-                              onClick={this.handleModalClose}></span>
+                              onClick={this.handleModalClose} />
                         {0 < this.state.editFieldData.length && this.state.editFieldData.map((item, index) => {
                             const enArr = item.en;
                             const arArr = item.ar;
@@ -260,7 +282,9 @@ class EditFieldModal extends Component {
                                         </div>
                                         <div className="field-content-wrap">
                                             <label className="checkbox-container">
-                                                <input id="input_checkbox" type="checkbox" checked={enArr.required}
+                                                <input id="input_checkbox"
+                                                       type="checkbox"
+                                                       checked={enArr.required}
                                                        onChange={this.handleRequiredCheck}/>
                                             </label>
                                         </div>
@@ -365,10 +389,11 @@ class EditFieldModal extends Component {
                                                                                 placeholder={item.ar.label}
                                                                             />
                                                                         </label>
+                                                                        { // TODO: "index" attr is not allowed here
+                                                                         }
                                                                         <span
                                                                             className="dashicons dashicons-no-alt remove-option-text"
-                                                                            index={index}
-                                                                            onClick={this.deleteOption}></span>
+                                                                            onClick={this.deleteOption}/>
                                                                     </div>
                                                                 </Fragment>
                                                             ))
@@ -376,7 +401,7 @@ class EditFieldModal extends Component {
                                                     </div>
                                                     <div className="add-new-option-text"
                                                          onClick={this.addNewOptionHandle}>
-                                                        <span className="dashicons dashicons-plus-alt2"></span>
+                                                        <span className="dashicons dashicons-plus-alt2" />
                                                         <span>Add Option</span>
                                                     </div>
                                                 </div>
@@ -424,7 +449,7 @@ class EditFieldModal extends Component {
                                                                         <span
                                                                             className="dashicons dashicons-no-alt remove-option-text"
                                                                             index={index}
-                                                                            onClick={this.deleteOption}></span>
+                                                                            onClick={this.deleteOption} />
                                                                     </div>
                                                                 </Fragment>
                                                             ))
@@ -432,7 +457,7 @@ class EditFieldModal extends Component {
                                                     </div>
                                                     <div className="add-new-option-text"
                                                          onClick={this.addNewOptionHandle}>
-                                                        <span className="dashicons dashicons-plus-alt2"></span>
+                                                        <span className="dashicons dashicons-plus-alt2" />
                                                         <span>Add Option</span>
                                                     </div>
                                                 </div>
@@ -480,7 +505,7 @@ class EditFieldModal extends Component {
                                                                         <span
                                                                             className="dashicons dashicons-no-alt remove-option-text"
                                                                             index={index}
-                                                                            onClick={this.deleteOption}></span>
+                                                                            onClick={this.deleteOption} />
                                                                     </div>
                                                                 </Fragment>
                                                             ))
@@ -488,7 +513,7 @@ class EditFieldModal extends Component {
                                                     </div>
                                                     <div className="add-new-option-text"
                                                          onClick={this.addNewOptionHandle}>
-                                                        <span className="dashicons dashicons-plus-alt2"></span>
+                                                        <span className="dashicons dashicons-plus-alt2" />
                                                         <span>Add Option</span>
                                                     </div>
                                                 </div>
@@ -504,54 +529,46 @@ class EditFieldModal extends Component {
                                                 <span>Upload Options<sup className="medatory"> *</sup></span></div>
                                             <div className="field-content-wrap">
                                                 <div className="multiple-check-option">
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="pdf">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.pdf}
-                                                                   type="checkbox" id="pdf"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .pdf
-                                                    </div>
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="doc">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.doc}
-                                                                   type="checkbox" id="doc"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .doc
-                                                    </div>
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="png">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.png}
-                                                                   type="checkbox" id="png"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .png
-                                                    </div>
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="xlsx">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.xlsx}
-                                                                   type="checkbox" id="xlsx"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .xlsx
-                                                    </div>
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="pptx">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.pptx}
-                                                                   type="checkbox" id="pptx"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .pptx
-                                                    </div>
-                                                    <div className="check-option-wrap">
-                                                        <label htmlFor="jpg">
-                                                            <input name="uploadOption[]"
-                                                                   checked={enArr.uploadOptions.jpg}
-                                                                   type="checkbox" id="jpg"
-                                                                   onChange={this.handleChangeUploadOption}/>
-                                                        </label> .jpg
-                                                    </div>
+                                                    {
+                                                        // TODO: Copy-paste should be removed.
+                                                        //  Move repeated code in separate component with parameters
+                                                    }
+                                                    <CheckOption
+                                                        htmlFor="pdf"
+                                                        checked={enArr.uploadOptions.pdf}
+                                                        id="pdf"
+                                                        handler={this.handleChangeUploadOption}
+                                                    /> .pdf
+                                                   <CheckOption
+                                                        htmlFor="doc"
+                                                        checked={enArr.uploadOptions.doc}
+                                                        id="doc"
+                                                        handler={this.handleChangeUploadOption}
+                                                    />
+                                                    <CheckOption
+                                                        htmlFor="png"
+                                                        checked={enArr.uploadOptions.png}
+                                                        id="png"
+                                                        handler={this.handleChangeUploadOption}
+                                                    />
+                                                    <CheckOption
+                                                        htmlFor="xlsx"
+                                                        checked={enArr.uploadOptions.xlsx}
+                                                        id="xlsx"
+                                                        handler={this.handleChangeUploadOption}
+                                                    />
+                                                    <CheckOption
+                                                        htmlFor="pptx"
+                                                        checked={enArr.uploadOptions.pptx}
+                                                        id="pptx"
+                                                        handler={this.handleChangeUploadOption}
+                                                    />
+                                                    <CheckOption
+                                                        htmlFor="jpg"
+                                                        checked={enArr.uploadOptions.jpg}
+                                                        id="jpg"
+                                                        handler={this.handleChangeUploadOption}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>

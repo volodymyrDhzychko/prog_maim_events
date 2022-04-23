@@ -44,257 +44,304 @@ class AddNewFieldModal extends Component {
     };
     camelCase = (str) => {
         return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-            return 0 == index ? word.toLowerCase() : word.toUpperCase();
+            return 0 === index ? word.toLowerCase() : word.toUpperCase();
         }).replace(/\s+/g, '');
     };
+    textInputHandler = (enID, arID) => {
+        const { enLabelName, arLabelName, fieldType, require, validationType } = this.state;
+
+        if ('' !== validationType) {
+            let newFieldObj = {
+                'en': {
+                    'control': fieldType,
+                    'type': validationType,
+                    'required': require,
+                    'label': enLabelName,
+                    'id': enID,
+                    'className': 'form-control',
+                    'name': enID,
+                    'language': 'English',
+                    'abbrivation': 'en'
+                },
+                'ar': {
+                    'control': fieldType,
+                    'type': validationType,
+                    'required': require,
+                    'label': arLabelName,
+                    'id': arID,
+                    'className': 'form-control',
+                    'name': arID,
+                    'language': 'Arabic',
+                    'abbrivation': 'ar'
+                }
+            };
+            this.props.handleAddField(newFieldObj);
+        } else {
+            this.setState({errorMsg: true});
+        }
+    }
+    textAreaHandler = (enID, arID) => {
+        const { enLabelName, arLabelName, fieldType, require } = this.state;
+
+        let newFieldObj = {
+            'en': {
+                'control': fieldType,
+                'required': require,
+                'label': enLabelName,
+                'id': enID,
+                'className': 'form-control',
+                'name': enID,
+                'language': 'English',
+                'abbrivation': 'en'
+            },
+            'ar': {
+                'control': fieldType,
+                'required': require,
+                'label': arLabelName,
+                'id': arID,
+                'className': 'form-control',
+                'name': arID,
+                'language': 'Arabic',
+                'abbrivation': 'ar'
+            }
+        };
+        this.props.handleAddField(newFieldObj);
+    }
+    dropdownHandler = (enID, arID) => {
+        const { enLabelName, arLabelName, fieldType, require, multipleOption, option, enOptionValues, arOptionValues } = this.state;
+
+        if (0 < enOptionValues.length && 0 < arOptionValues.length ) {
+            let enValue = [];
+            let arValue = [];
+            let optionValueErrorCount = 0;
+            0 < option.length && option.map((item, index) => {
+                if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
+                    optionValueErrorCount++;
+                }else{
+                    enValue.push({'value': enOptionValues[index]});
+                }
+                if( '' === arOptionValues[index] || index  >= arOptionValues.length  || undefined === arOptionValues[index] ){
+                    optionValueErrorCount++;
+                }else{
+                    arValue.push({'value': arOptionValues[index]});
+                }
+
+
+            });
+            let newFieldObj = {
+                'en': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': enLabelName,
+                    'id': enID,
+                    'className': 'form-control',
+                    'name': enID,
+                    'language': 'English',
+                    'abbrivation': 'en',
+                    'multiple': multipleOption,
+                    'values': enValue
+                },
+                'ar': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': arLabelName,
+                    'id': arID,
+                    'className': 'form-control',
+                    'name': arID,
+                    'language': 'Arabic',
+                    'abbrivation': 'ar',
+                    'multiple': multipleOption,
+                    'values': arValue
+                }
+            };
+            if( 0 === optionValueErrorCount ){
+                this.props.handleAddField(newFieldObj);
+            }else{
+                this.setState({errorMsg: true});
+            }
+        } else {
+            this.setState({errorMsg: true});
+        }
+    }
+    radioHandler = (enID, arID) => {
+        const { enLabelName, arLabelName, fieldType, require, option, enOptionValues, arOptionValues } = this.state;
+
+        if (0 < enOptionValues.length && 0 < arOptionValues.length) {
+            let enValue = [];
+            let arValue = [];
+           let optionValueErrorCount = 0;
+            0 < option.length && option.map((item, index) => {
+                if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
+                    optionValueErrorCount++;
+                }
+                if( '' === arOptionValues[index] || index  >= arOptionValues.length || undefined === arOptionValues[index]){
+                    optionValueErrorCount++;
+                }
+                enValue.push({'value': enOptionValues[index]});
+                arValue.push({'value': arOptionValues[index]});
+            });
+            let newFieldObj = {
+                'en': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': enLabelName,
+                    'id': enID,
+                    'className': 'form-control',
+                    'name': enID,
+                    'language': 'English',
+                    'abbrivation': 'en',
+                    'values': enValue
+                },
+                'ar': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': arLabelName,
+                    'id': arID,
+                    'className': 'form-control',
+                    'name': arID,
+                    'language': 'Arabic',
+                    'abbrivation': 'ar',
+                    'values': arValue
+                }
+            };
+            if( 0 === optionValueErrorCount ){
+                this.props.handleAddField(newFieldObj);
+            }else{
+                this.setState({errorMsg: true});
+            }
+        } else {
+            this.setState({errorMsg: true});
+        }
+    }
+    checkboxHandler = (enID, arID) => {
+        const { enLabelName, arLabelName, fieldType, require, option, enOptionValues, arOptionValues } = this.state;
+
+        if (0 < enOptionValues.length && 0 < arOptionValues.length) {
+            let enValue = [];
+            let arValue = [];
+            let optionValueErrorCount = 0;
+            0 < option.length && option.map((item, index) => {
+                if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
+                    optionValueErrorCount++;
+                }
+                if( '' === arOptionValues[index] || index  >= arOptionValues.length || undefined === arOptionValues[index]){
+                    optionValueErrorCount++;
+                }
+                enValue.push({'value': enOptionValues[index]});
+                arValue.push({'value': arOptionValues[index]});
+            });
+            let newFieldObj = {
+                'en': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': enLabelName,
+                    'id': enID,
+                    'className': 'form-control',
+                    'name': enID,
+                    'language': 'English',
+                    'abbrivation': 'en',
+                    'values': enValue
+                },
+                'ar': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': arLabelName,
+                    'id': arID,
+                    'className': 'form-control',
+                    'name': arID,
+                    'language': 'Arabic',
+                    'abbrivation': 'ar',
+                    'values': arValue
+                }
+            };
+            if( 0 === optionValueErrorCount ){
+                this.props.handleAddField(newFieldObj);
+            }else{
+                this.setState({errorMsg: true});
+            }
+        } else {
+            this.setState({errorMsg: true});
+        }
+    }
+    uploadHandler = (enID, arID) => {
+        const {enLabelName, arLabelName, fieldType, require, enButtonLabel1, arButtonLabel1} = this.state;
+
+        const uploadOptions = this.state.uploadOptions[0];
+        let allowedOption = [];
+        for (let key in uploadOptions) {
+            if (uploadOptions.hasOwnProperty(key)) {
+                uploadOptions[key] && allowedOption.push(key);
+            }
+        }
+        if ('' !== enButtonLabel1 && '' !== arButtonLabel1 && 0 < allowedOption.length) {
+            let newFieldObj = {
+                'en': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': enLabelName,
+                    'id': enID,
+                    'className': 'form-control',
+                    'name': enID,
+                    'language': 'English',
+                    'abbrivation': 'en',
+                    'button1': enButtonLabel1,
+                    'uploadOptions': uploadOptions
+                },
+                'ar': {
+                    'control': fieldType,
+                    'required': require,
+                    'label': arLabelName,
+                    'id': arID,
+                    'className': 'form-control',
+                    'name': arID,
+                    'language': 'Arabic',
+                    'abbrivation': 'ar',
+                    'button1': arButtonLabel1,
+                    'uploadOptions': uploadOptions
+                }
+            };
+            this.props.handleAddField(newFieldObj);
+        } else {
+            this.setState({errorMsg: true});
+        }
+    }
+
+    // TODO: This function was written in spaghetti style.. It bad practice.
+    //  Try to rewrite it in functional style.
+    //  Follow this way you can use switch operator to call simple function inside each case operator..
 
     handleSaveNewField = (event) => {
-        const {enLabelName, arLabelName, fieldType, require, multipleOption, validationType, option, enOptionValues, arOptionValues, enButtonLabel1, arButtonLabel1} = this.state;
+        const { enLabelName, arLabelName, fieldType } = this.state;
         let enID, arID = '';
         this.setState({errorMsg: false});
+
         if ('' !== enLabelName && '' !== arLabelName && '' !== fieldType) {
             enID = this.camelCase(`en${enLabelName}`);
             arID = this.camelCase(`ar${enLabelName}`);
-            if ('Text Input' === fieldType) {
-                if ('' !== validationType) {
-                    let newFieldObj = {
-                        'en': {
-                            'control': fieldType,
-                            'type': validationType,
-                            'required': require,
-                            'label': enLabelName,
-                            'id': enID,
-                            'className': 'form-control',
-                            'name': enID,
-                            'language': 'English',
-                            'abbrivation': 'en'
-                        },
-                        'ar': {
-                            'control': fieldType,
-                            'type': validationType,
-                            'required': require,
-                            'label': arLabelName,
-                            'id': arID,
-                            'className': 'form-control',
-                            'name': arID,
-                            'language': 'Arabic',
-                            'abbrivation': 'ar'
-                        }
-                    };
-                    this.props.handleAddField(newFieldObj);
-                } else {
-                    this.setState({errorMsg: true});
+            switch(fieldType) {
+                case 'Text Input': {
+                    this.textInputHandler(enID, arID);
+                    break;
                 }
-            } else if ('Text Area' === fieldType) {
-                let newFieldObj = {
-                    'en': {
-                        'control': fieldType,
-                        'required': require,
-                        'label': enLabelName,
-                        'id': enID,
-                        'className': 'form-control',
-                        'name': enID,
-                        'language': 'English',
-                        'abbrivation': 'en'
-                    },
-                    'ar': {
-                        'control': fieldType,
-                        'required': require,
-                        'label': arLabelName,
-                        'id': arID,
-                        'className': 'form-control',
-                        'name': arID,
-                        'language': 'Arabic',
-                        'abbrivation': 'ar'
-                    }
-                };
-                this.props.handleAddField(newFieldObj);
-            } else if ('Dropdown Select' === fieldType) {
-                if (0 < enOptionValues.length && 0 < arOptionValues.length ) {
-                    let enValue = [];
-                    let arValue = [];
-                    let optionValueErrorCount = 0;
-                    0 < option.length && option.map((item, index) => {
-                        if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
-                            optionValueErrorCount++;
-                        }else{
-                            enValue.push({'value': enOptionValues[index]});
-                        }
-                        if( '' === arOptionValues[index] || index  >= arOptionValues.length  || undefined === arOptionValues[index] ){
-                            optionValueErrorCount++;
-                        }else{
-                            arValue.push({'value': arOptionValues[index]});
-                        }
-
-
-                    });
-                    let newFieldObj = {
-                        'en': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': enLabelName,
-                            'id': enID,
-                            'className': 'form-control',
-                            'name': enID,
-                            'language': 'English',
-                            'abbrivation': 'en',
-                            'multiple': multipleOption,
-                            'values': enValue
-                        },
-                        'ar': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': arLabelName,
-                            'id': arID,
-                            'className': 'form-control',
-                            'name': arID,
-                            'language': 'Arabic',
-                            'abbrivation': 'ar',
-                            'multiple': multipleOption,
-                            'values': arValue
-                        }
-                    };
-                    if( 0 === optionValueErrorCount ){
-                        this.props.handleAddField(newFieldObj);
-                    }else{
-                        this.setState({errorMsg: true});
-                    }
-                } else {
-                    this.setState({errorMsg: true});
+                case 'Text Area': {
+                    this.textAreaHandler(enID, arID);
+                    break;
                 }
-
-            } else if ('Radio' === fieldType) {
-                if (0 < enOptionValues.length && 0 < arOptionValues.length) {
-                    let enValue = [];
-                    let arValue = [];
-                   let optionValueErrorCount = 0;
-                    0 < option.length && option.map((item, index) => {
-                        if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
-                            optionValueErrorCount++;
-                        }
-                        if( '' === arOptionValues[index] || index  >= arOptionValues.length || undefined === arOptionValues[index]){
-                            optionValueErrorCount++;
-                        }
-                        enValue.push({'value': enOptionValues[index]});
-                        arValue.push({'value': arOptionValues[index]});
-                    });
-                    let newFieldObj = {
-                        'en': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': enLabelName,
-                            'id': enID,
-                            'className': 'form-control',
-                            'name': enID,
-                            'language': 'English',
-                            'abbrivation': 'en',
-                            'values': enValue
-                        },
-                        'ar': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': arLabelName,
-                            'id': arID,
-                            'className': 'form-control',
-                            'name': arID,
-                            'language': 'Arabic',
-                            'abbrivation': 'ar',
-                            'values': arValue
-                        }
-                    };
-                    if( 0 === optionValueErrorCount ){
-                        this.props.handleAddField(newFieldObj);
-                    }else{
-                        this.setState({errorMsg: true});
-                    }
-                } else {
-                    this.setState({errorMsg: true});
+                case 'Dropdown Select': {
+                    this.dropdownHandler(enID, arID);
+                    break;
                 }
-            } else if ('Checkbox' === fieldType ) {
-                if (0 < enOptionValues.length && 0 < arOptionValues.length) {
-                    let enValue = [];
-                    let arValue = [];
-                    let optionValueErrorCount = 0;
-                    0 < option.length && option.map((item, index) => {
-                        if( '' === enOptionValues[index] || index >= enOptionValues.length || undefined === enOptionValues[index]){
-                            optionValueErrorCount++;
-                        }
-                        if( '' === arOptionValues[index] || index  >= arOptionValues.length || undefined === arOptionValues[index]){
-                            optionValueErrorCount++;
-                        }
-                        enValue.push({'value': enOptionValues[index]});
-                        arValue.push({'value': arOptionValues[index]});
-                    });
-                    let newFieldObj = {
-                        'en': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': enLabelName,
-                            'id': enID,
-                            'className': 'form-control',
-                            'name': enID,
-                            'language': 'English',
-                            'abbrivation': 'en',
-                            'values': enValue
-                        },
-                        'ar': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': arLabelName,
-                            'id': arID,
-                            'className': 'form-control',
-                            'name': arID,
-                            'language': 'Arabic',
-                            'abbrivation': 'ar',
-                            'values': arValue
-                        }
-                    };
-                    if( 0 === optionValueErrorCount ){
-                        this.props.handleAddField(newFieldObj);
-                    }else{
-                        this.setState({errorMsg: true});
-                    }
-                } else {
-                    this.setState({errorMsg: true});
+                case 'Radio': {
+                    this.radioHandler(enID, arID);
+                    break;
                 }
-            } else if ('File Upload' === fieldType) {
-                const uploadOptions = this.state.uploadOptions[0];
-                let allowedOption = [];
-                for (let key in uploadOptions) {
-                    if (uploadOptions.hasOwnProperty(key)) {
-                        uploadOptions[key] && allowedOption.push(key);
-                    }
+                case 'Checkbox': {
+                    this.checkboxHandler(enID, arID);
+                    break;
                 }
-                if ('' !== enButtonLabel1 && '' !== arButtonLabel1 && 0 < allowedOption.length) {
-                    let newFieldObj = {
-                        'en': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': enLabelName,
-                            'id': enID,
-                            'className': 'form-control',
-                            'name': enID,
-                            'language': 'English',
-                            'abbrivation': 'en',
-                            'button1': enButtonLabel1,
-                            'uploadOptions': uploadOptions
-                        },
-                        'ar': {
-                            'control': fieldType,
-                            'required': require,
-                            'label': arLabelName,
-                            'id': arID,
-                            'className': 'form-control',
-                            'name': arID,
-                            'language': 'Arabic',
-                            'abbrivation': 'ar',
-                            'button1': arButtonLabel1,
-                            'uploadOptions': uploadOptions
-                        }
-                    };
-                    this.props.handleAddField(newFieldObj);
-                } else {
-                    this.setState({errorMsg: true});
+                case 'File Upload': {
+                    this.uploadHandler(enID, arID);
+                    break;
                 }
             }
         } else {
@@ -317,7 +364,7 @@ class AddNewFieldModal extends Component {
             'en': {'label': `Option${optionLength + 1} (English)`},
             'ar': {'label': `Option${optionLength + 1} (Arabic)`}
         });
-        // $('.multiple-option-group').animate({scrollTop: $('.option-wrap:last').offset().top}, 500); // TODO remove ?if uncoment - bug - Can't add fields after deleting it - Registration Form
+        $('.multiple-option-group').animate({scrollTop: $('.option-wrap:last').offset().top}, 500);
         this.setState({option});
     };
     deleteOption = (event) => {
@@ -353,7 +400,7 @@ class AddNewFieldModal extends Component {
                 <div className="modal-wrap">
                     <div className="modal-inner">
                         <span className="dashicons dashicons-no-alt main-clearbtn"
-                              onClick={this.handleModalClose}></span>
+                              onClick={this.handleModalClose} />
                         <div className="add-field-wrap default-checkbox">
                             <div className="field-label-wrap">
                                 <span>Required</span>
@@ -449,7 +496,7 @@ class AddNewFieldModal extends Component {
                                 <div className="field-label-wrap">
                                     <span>Value<sup className="medatory"> *</sup></span>
                                 </div>
-                                <div className="field-content-wrap"> 
+                                <div className="field-content-wrap">
                                     <div className="multiple-option">
                                         <div className="multiple-option-group">
                                             {
@@ -480,14 +527,14 @@ class AddNewFieldModal extends Component {
                                                             </label>
                                                             <span
                                                                 className="dashicons dashicons-no-alt remove-option-text"
-                                                                index={index} onClick={this.deleteOption}></span>
+                                                                index={index} onClick={this.deleteOption} />
                                                         </div>
                                                     </Fragment>
                                                 ))
                                             }
                                         </div>
                                         <div className="add-new-option-text" onClick={this.addNewOptionHandle}>
-                                            <span className="dashicons dashicons-plus-alt2"></span>
+                                            <span className="dashicons dashicons-plus-alt2" />
                                             <span>Add Option</span>
                                         </div>
                                     </div>
@@ -532,14 +579,14 @@ class AddNewFieldModal extends Component {
                                                             </label>
                                                             <span
                                                                 className="dashicons dashicons-no-alt remove-option-text"
-                                                                index={index} onClick={this.deleteOption}></span>
+                                                                index={index} onClick={this.deleteOption} />
                                                         </div>
                                                     </Fragment>
                                                 ))
                                             }
                                         </div>
                                         <div className="add-new-option-text" onClick={this.addNewOptionHandle}>
-                                            <span className="dashicons dashicons-plus-alt2"></span>
+                                            <span className="dashicons dashicons-plus-alt2" />
                                             <span>Add Option</span>
                                         </div>
                                     </div>
@@ -584,14 +631,14 @@ class AddNewFieldModal extends Component {
                                                             </label>
                                                             <span
                                                                 className="dashicons dashicons-no-alt remove-option-text"
-                                                                index={index} onClick={this.deleteOption}></span>
+                                                                index={index} onClick={this.deleteOption} />
                                                         </div>
                                                     </Fragment>
                                                 ))
                                             }
                                         </div>
                                         <div className="add-new-option-text" onClick={this.addNewOptionHandle}>
-                                            <span className="dashicons dashicons-plus-alt2"></span>
+                                            <span className="dashicons dashicons-plus-alt2" />
                                             <span>Add Option</span>
                                         </div>
                                     </div>
@@ -602,49 +649,62 @@ class AddNewFieldModal extends Component {
                         {'File Upload' === fieldType &&
                         <div className="validation-field">
                             <div className="add-field-wrap">
-                                <div className="field-label-wrap"><span>Upload Options<sup className="medatory"> *</sup></span>
+                                <div className="field-label-wrap">
+                                    <span>Upload Options<sup className="medatory"> *</sup></span>
                                 </div>
                                 <div className="field-content-wrap">
                                     <div className="multiple-check-option">
                                         <div className="check-option-wrap">
                                             <label htmlFor="pdf">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].pdf}
-                                                       type="checkbox" id="pdf"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].pdf}
+                                                       type="checkbox"
+                                                       id="pdf"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .pdf
                                         </div>
                                         <div className="check-option-wrap">
                                             <label htmlFor="doc">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].doc}
-                                                       type="checkbox" id="doc"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].doc}
+                                                       type="checkbox"
+                                                       id="doc"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .doc
                                         </div>
                                         <div className="check-option-wrap">
                                             <label htmlFor="png">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].png}
-                                                       type="checkbox" id="png"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].png}
+                                                       type="checkbox"
+                                                       id="png"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .png
                                         </div>
                                         <div className="check-option-wrap">
                                             <label htmlFor="xlsx">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].xlsx}
-                                                       type="checkbox" id="xlsx"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].xlsx}
+                                                       type="checkbox"
+                                                       id="xlsx"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .xlsx
                                         </div>
                                         <div className="check-option-wrap">
                                             <label htmlFor="pptx">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].pptx}
-                                                       type="checkbox" id="pptx"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].pptx}
+                                                       type="checkbox"
+                                                       id="pptx"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .pptx
                                         </div>
                                         <div className="check-option-wrap">
                                             <label htmlFor="jpg">
-                                                <input name="uploadOption[]" checked={uploadOptions[0].jpg}
-                                                       type="checkbox" id="jpg"
+                                                <input name="uploadOption[]"
+                                                       checked={uploadOptions[0].jpg}
+                                                       type="checkbox"
+                                                       id="jpg"
                                                        onChange={this.handleChangeUploadOption}/>
                                             </label> .jpg
                                         </div>
@@ -690,9 +750,13 @@ class AddNewFieldModal extends Component {
                         }
                         <div className="button-wrapper add-field-wrap">
                             <div className="field-content-wrap">
-                                <input type="button" value="Save" className="button button-primary"
+                                <input type="button"
+                                       value="Save"
+                                       className="button button-primary"
                                        onClick={this.handleSaveNewField}/>
-                                <input type="button" value="Cancel" className="button button-primary"
+                                <input type="button"
+                                       value="Cancel"
+                                       className="button button-primary"
                                        onClick={this.handleModalClose}/>
                             </div>
                             {this.state.errorMsg &&

@@ -15,8 +15,8 @@ class CompulsoryFields extends Component {
             restUrl: '/wp-json/register-form/v1/',
             postID: this.props.wpObject.postID,
             registrationFormData: this.props.registrationFormData,
-            compulsoryFieldsObj: [],
-            isRtl: document.getElementsByTagName("html")[0].getAttribute("dir")=='rtl' ? true : false,
+            compulsoryFieldsObj: []
+
         };
     }
 
@@ -54,7 +54,7 @@ class CompulsoryFields extends Component {
                             <div className="field-wrap" key={index}>
                                 <div className="field-inner">
                                     <div className="field-container en-field">
-                                        <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{enArr.label}</span>
+                                        <span className="field-label">{enArr.label}</span>
                                         <label htmlFor={enArr.id} className="screen-reader-text">{enArr.label}</label>
                                             <input
                                                 type={enArr.type}
@@ -67,7 +67,7 @@ class CompulsoryFields extends Component {
 
                                     </div>
                                     <div className="field-container ar-field">
-                                        <span className={"field-label " + (isRtl? "field-label-rtl":"")}>{arArr.label}</span>
+                                        <span className="field-label">{arArr.label}</span>
                                         <label htmlFor={arArr.id} className="screen-reader-text">{arArr.label}</label>
                                             <input
                                                 type={arArr.type}
