@@ -598,7 +598,7 @@ if ( isset( $language ) && ! empty( $language ) ) {
 										<div class="hero-scrollToIcon">
 											<a aria-label="event_registration_form" href="#event_registration_form" class="hero-scrollTo">
 												<svg xmlns="http://www.w3.org/2000/svg" role="complementary" width="10" height="26" viewBox="0 0 10 26">
-													<path id="Union_1" data-name="Union 1" d="M-6020,20h4V0h2V20h4l-5,6Z" transform="translate(6020)" fill="white">
+													<path id="Union_1" data-name="Union 1" d="M-6020,20h4V0h2V20h4l-5,6Z" transform="translate(6020)" fill="currentColor">
 													</path>
 												</svg>
 											</a>
