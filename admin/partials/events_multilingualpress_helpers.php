@@ -1127,9 +1127,9 @@ function dffmain_is_var_empty( $variable ){
  * 
  * @return [string] $html
  */
-function diffmain_the_settins_imput( $settings, $id, $text, $placeholder = false ){
+function diffmain_the_settins_imput( $settings, $id, $text, $placeholder = false ){ 
 
-    if ( empty( $settings )) {
+    if ( empty( $settings ) && empty( $text ) ) {
         echo 'No such setting: ' . $settings . '[' . $id . ']';
         return;
     }
