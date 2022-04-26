@@ -167,8 +167,7 @@ class Events_Main_Plugin_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/events-main-plugin-admin.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->plugin_name . 'datatables', plugin_dir_url( __FILE__ ) . 'js/datatables.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'build/js/index.js', $this->version, false );
 		wp_localize_script(
 			$this->plugin_name, 'ajax_object', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -198,9 +197,7 @@ class Events_Main_Plugin_Admin {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/events-main-plugin-admin.css', array(), $this->version, 'all' );
-		wp_enqueue_style( $this->plugin_name . '-dataTables', plugin_dir_url( __FILE__ ) . 'css/dataTables.jqueryui.min.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'form-builder.css', plugin_dir_url( __FILE__ ) . 'css/form-builder.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'index.css', plugin_dir_url( __FILE__ ) . 'build/css/index.css', array(), $this->version, 'all' );
 
 	}
 
