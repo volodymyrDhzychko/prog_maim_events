@@ -167,7 +167,8 @@ class Events_Main_Plugin_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'build/js/index.js', $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/events-main-plugin-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . 'datatables', plugin_dir_url( __FILE__ ) . 'js/datatables.min.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name, 'ajax_object', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
