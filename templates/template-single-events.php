@@ -248,7 +248,7 @@ if ( isset( $language ) && ! empty( $language ) ) {
 						}
 
 						if ( ! empty( $field_options ) ) {
-							$option_html = '<option disabled selected value></option>';
+							$option_html = '<option disabled selected value=""></option>';
 							for ( $i = 0; $i < sizeof( $field_options ); $i++ ) {
 								$option_html .= '<option value="' . $field_options[ $i ]['value'] . '">' . $field_options[ $i ]['value'] . '</option>';
 							}
