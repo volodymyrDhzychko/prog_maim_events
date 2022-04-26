@@ -46,6 +46,11 @@ jQuery(document).ready(function () {
         errorMsgs = '';
 
         if (0 !== $('body.post-type-dffmain-events').length) {
+            if ('' === jQuery('#title').val()) {
+                errorMsgs += '<p>Please enter Event title.</p>';
+
+                $('#title').css('border-color', 'red');
+            }
             if (0 === $('#set-post-thumbnail img').length) {
                 errorMsgs += '<p>Please set Featured Image.</p>';
 
