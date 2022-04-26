@@ -64,7 +64,7 @@ class Events_Main_Plugin_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'build/css/index.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/events-main-plugin-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -76,14 +76,14 @@ class Events_Main_Plugin_Public {
 	public function enqueue_scripts() {
 
 		/**TODO mimify js file */
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'build/css/index.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/events-main-plugin-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script(
 			$this->plugin_name, 'formObj', array(
 				'ajaxurl'              => admin_url( 'admin-ajax.php' ),
 				'diffmainTranslations' => get_translations_data(true)
 			)
 		);
-    wp_enqueue_script( 'google-captcha-js', 'https://www.google.com/recaptcha/api.js', array( 'jquery' ), $this->version, true );
+        wp_enqueue_script( 'google-captcha-js', 'https://www.google.com/recaptcha/api.js', array( 'jquery' ), $this->version, true );
 
 	}
 
