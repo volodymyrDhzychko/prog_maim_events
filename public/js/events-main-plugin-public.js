@@ -141,7 +141,8 @@
 
                         }
                     } else if ($(this).find('select').length) {
-                        if ('' === $(this).find('select').val()) {
+                        let iosArr = $(this).find('select').val();
+                        if ('' === $(this).find('select').val() || iosArr.length == 0 ) {
                             errorCount++;
                             $(this).addClass('invalid');
                             $(this).removeClass('valid');
