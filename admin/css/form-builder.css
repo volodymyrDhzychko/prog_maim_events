@@ -16,7 +16,7 @@
 .registration-form-body #registration_form h3{padding:7px 15px;background-color:#fff}
 .registration-form-body #registration_form .registration-template>.button-wrap{width:auto;float:right;margin-top:-75px}
 .registration-template .field-wrap{background:#fff;padding:15px 15px 20px;margin:0 0 20px;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
-.registration-template .field-wrap .field-inner{width:60%;max-width:780px;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+.registration-template .field-wrap .field-inner{width:90%;max-width:780px;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .registration-template .field-wrap .field-controles{display:inline-block;vertical-align:middle;width:40%;padding-left:4%;-webkit-box-sizing:border-box;box-sizing:border-box;margin-top:5px}
 .registration-template .field-wrap .field-controles a{display:inline-block;vertical-align:middle;margin-right:15px;color:#000;text-decoration:none;font-size:16px;cursor:pointer}
 .registration-template .field-wrap .field-controles a:last-child{margin-right:0}
@@ -30,11 +30,14 @@
 .registration-template .field-wrap:nth-last-child(2) .field-controles a.controle-move-down:hover span{color:#ccc}
 .registration-template .field-wrap .field-container{width:50%;padding:0 10px;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .registration-template .field-wrap .field-container .field-label{display:inline-block;width:100%;margin-bottom:5px;font-size:13px}
-.registration-template .field-wrap .field-container.en-field{padding:0 25px 0 0}
+.registration-template .field-wrap .field-container.en-field{padding:0 25px 0 25px}
 .registration-template .field-wrap .field-container.ar-field{padding:0 0 0 25px;direction:rtl}
 
 .registration-template .field-wrap .field-container.en-field .field-label{text-align:left}
 .registration-template .field-wrap .field-container.ar-field .field-label{text-align:right}
+
+[dir='rtl'] .registration-template .field-wrap .field-container.en-field .field-label{text-align:right}
+[dir='rtl'] .registration-template .field-wrap .field-container.ar-field .field-label{text-align:left}
 
 .registration-template .field-wrap .field-container.en-field .field-label-rtl{text-align:right!important}
 .registration-template .field-wrap .field-container.ar-field .field-label-rtl{text-align:left!important}
