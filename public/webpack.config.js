@@ -5,7 +5,7 @@ const path = require('path');
 
 const jsPath= './js';
 const cssPath = './scss';
-const outputPath = 'assets';
+const outputPath = 'build';
 const entryPoints = {
   'index': [jsPath + '/index.js', cssPath + '/main.scss']
 };
