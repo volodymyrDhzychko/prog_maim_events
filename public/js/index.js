@@ -1,0 +1,1 @@
+import './events-main-plugin-public'
