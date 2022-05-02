@@ -76,6 +76,13 @@ var $ = jQuery;
 
 jQuery(document).ready(function () {
 
+    // prevent Event submit on Enter key pressed
+    jQuery('.post-type-dffmain-events #post').bind('keypress keydown keyup', function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+        }
+    });
+
     // event_attendee_limit_count restrict to only positive numbers
     jQuery('.event_attendee_limit_count').keypress(function (event) {
         if (!(event.charCode >= 48 && event.charCode <= 57)) {
