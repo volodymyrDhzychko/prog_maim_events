@@ -16,7 +16,7 @@
 .registration-form-body #registration_form h3{padding:7px 15px;background-color:#fff}
 .registration-form-body #registration_form .registration-template>.button-wrap{width:auto;float:right;margin-top:-75px}
 .registration-template .field-wrap{background:#fff;padding:15px 15px 20px;margin:0 0 20px;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
-.registration-template .field-wrap .field-inner{width:90%;max-width:780px;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+.registration-template .field-wrap .field-inner{width:60%;max-width:780px;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .registration-template .field-wrap .field-controles{display:inline-block;vertical-align:middle;width:40%;padding-left:4%;-webkit-box-sizing:border-box;box-sizing:border-box;margin-top:5px}
 .registration-template .field-wrap .field-controles a{display:inline-block;vertical-align:middle;margin-right:15px;color:#000;text-decoration:none;font-size:16px;cursor:pointer}
 .registration-template .field-wrap .field-controles a:last-child{margin-right:0}
@@ -112,7 +112,7 @@ input#template-name{min-width:500px}
 .event_editor_section .tabcontent .registration-template .field-wrap .select_field_checkbox{margin-right:10px}
 .event_editor_section .tabcontent .registration-template .field-wrap .select_field_checkbox input[type=checkbox]{width:19px;height:19px}
 .event_editor_section .tabcontent .registration-template .field-wrap .select_field_checkbox input[type=checkbox]:checked::before{margin:-0.09rem 0 0 -0.2rem}
-.event_editor_section .tabcontent .registration-template .field-wrap .field-inner{width:90%;max-width:90%}
+.event_editor_section .tabcontent .registration-template .field-wrap .field-inner{width:60%;max-width:90%}
 .event_editor_section .tabcontent .registration-template .field-wrap .field-container .checkbox-group input[type=checkbox]:checked::before{margin:-0.1675rem 0 0 -0.15rem}
 .field-wrap input#select_all{margin-right:10px}
 
