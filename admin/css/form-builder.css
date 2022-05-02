@@ -15,6 +15,7 @@
 .registration-form-body #registration_form .inside{padding:0 0 12px;-webkit-box-sizing:border-box;box-sizing:border-box}
 .registration-form-body #registration_form h3{padding:7px 15px;background-color:#fff}
 .registration-form-body #registration_form .registration-template>.button-wrap{width:auto;float:right;margin-top:-75px}
+[dir='rtl'] .registration-form-body #registration_form .registration-template>.button-wrap{width:auto;float:left;margin-top:-75px}
 .registration-template .field-wrap{background:#fff;padding:15px 15px 20px;margin:0 0 20px;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .registration-template .field-wrap .field-inner{width:60%;max-width:780px;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 .registration-template .field-wrap .field-controles{display:inline-block;vertical-align:middle;width:40%;padding-left:4%;-webkit-box-sizing:border-box;box-sizing:border-box;margin-top:5px}
