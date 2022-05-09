@@ -447,7 +447,7 @@ jQuery(document).ready(function () {
 
     jQuery(document).on('click', '#cancel_event_now', function () {
 
-        const post_id = jQuery('.post_id').val();
+        const post_id = jQuery('#post_ID').val();
 
         jQuery.ajax({
             url: ajax_object.ajaxurl,
