@@ -8,11 +8,11 @@ function tab_editor_function() {
 
 	$post_metas = get_post_meta( $post->ID );
 
-	$events_overview         = $post_metas['events_overview'][0];
-	$dffmain_events_agenda   = $post_metas['dffmain_events_agenda'][0];
-	$dffmain_event_location  = $post_metas['dffmain_event_location'][0];
-	$dffmain_post_title      = $post_metas['dffmain_post_title'][0];
-	$template_id             = $post_metas['_wp_template_id'][0];
+	$events_overview         = isset( $post_metas['events_overview'][0] ) ? $post_metas['events_overview'][0] : '';
+	$dffmain_events_agenda   = isset( $post_metas['dffmain_events_agenda'] ) ? $post_metas['dffmain_events_agenda'][0] : '';
+	$dffmain_event_location  = isset( $post_metas['dffmain_event_location'] ) ? $post_metas['dffmain_event_location'][0] : '';
+	$dffmain_post_title      = isset( $post_metas['dffmain_post_title'] ) ? $post_metas['dffmain_post_title'][0] : '';
+	$template_id             = isset( $post_metas['_wp_template_id'] ) ? $post_metas['_wp_template_id'][0] : '';
 	$action                  = filter_input( INPUT_GET, 'action', FILTER_SANITIZE_STRING );
 	$action                  = isset( $action ) ? $action : '';
 	$event_cancelled         = get_post_status( $post->ID );
