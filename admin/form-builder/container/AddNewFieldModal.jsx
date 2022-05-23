@@ -364,7 +364,10 @@ class AddNewFieldModal extends Component {
             'en': {'label': `Option${optionLength + 1} (English)`},
             'ar': {'label': `Option${optionLength + 1} (Arabic)`}
         });
-        $('.multiple-option-group').animate({scrollTop: $('.option-wrap:last').offset().top}, 500);
+        const optionWrap = $('.option-wrap:last');
+        if (optionWrap.length) {
+            $('.multiple-option-group').animate({scrollTop: optionWrap.offset().top}, 500);
+        }
         this.setState({option});
     };
     deleteOption = (event) => {
