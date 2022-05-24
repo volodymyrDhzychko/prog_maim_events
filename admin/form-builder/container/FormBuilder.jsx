@@ -191,15 +191,13 @@ class Main extends Component {
         }else{
             let body = document.body;
             body.classList.add('is-loading');
-            console.log('restUrl', `${this.state.restUrl}add-form-data`);
-            console.log('window.ajax_object', ajax_object);
             axios.post(`${this.state.restUrl}add-form-data`, {
                 postID: this.state.postID,
                 registrationFormData: this.state.registrationFormData,
             })
             .then(res => {
                 if (res.success) {
-                    $('#publish3').trigger('click');
+                    $('#publish').trigger('click');
                 }
             }).catch((e) => {
                 console.log(e);

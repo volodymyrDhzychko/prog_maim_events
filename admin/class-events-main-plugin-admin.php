@@ -158,26 +158,6 @@ class Events_Main_Plugin_Admin {
 		// redirect event_manager user to All Events dashboard page after login
 		add_filter( 'login_redirect', array( $this, 'login_redirect_event_manager_to_events_list' ), 10, 3 );
 
-		add_action( 'admin_footer-post-new.php', array( $this, 'change_registration_forms_publish_id' ) );
-		add_action( 'admin_footer-post.php', array( $this, 'change_registration_forms_publish_id' ) );
-
-
-	}
-	/**
-	 * Changes the Id of default "publish" button to prevent Range Error
-	 *
-	 * @return void
-	 */
-	function change_registration_forms_publish_id() {
-		if ( 'registration-forms' !== $GLOBALS['post_type'] )
-			return;
-
-		?>
-			<script>
-				let publish_btn_elem = document.getElementById('publish');
-				publish_btn_elem.setAttribute("id", "publish3");
-			</script>
-		<?php
 	}
 
 	/**
