@@ -621,6 +621,8 @@ function google_embed_maps_code_function() {
                   cols="25"
 		><?php echo esc_attr( $google_embed_maps_code ); ?></textarea>
 	</label>
+	<br><br>
+	<span><i>In Google maps on the top left, click Menu icon <b>&#9776;</b>. Select Share or embed map. Go to <b>Embed a map</b>. Copy code.</i></span>
 	<?php
 
 }
@@ -642,6 +644,8 @@ function event_google_map_function() {
 		       value="<?php echo esc_attr( $event_google_map_input ); ?>"
         />
 	</label>
+	<br><br>
+	<span><i>In Google maps on the top left, click Menu icon <b>&#9776;</b>. Select Share or embed map. Copy Share link</i></span>
 	<?php
 }
 
