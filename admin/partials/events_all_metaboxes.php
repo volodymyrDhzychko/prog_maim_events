@@ -645,7 +645,7 @@ function event_google_map_function() {
         />
 	</label>
 	<br><br>
-	<span><i>In Google maps on the top left, click Menu icon <b>&#9776;</b>. Select Share or embed map. Copy Share link</i></span>
+	<span><i>In Google maps on the top left, click Menu icon <b>&#9776;</b>. Select Share or embed map. Copy Share link. The <b>Event Location</b> field have to be filled.</i></span>
 	<?php
 }
 
