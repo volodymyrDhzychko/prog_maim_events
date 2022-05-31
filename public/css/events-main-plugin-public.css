@@ -6,18 +6,21 @@
 	
 	.admin-front-register-page h1 {
 	font-size:36px;
+	font-weight: 700;
 	line-height:1.25;
 	margin:0;
 	}
 	
 	.admin-front-register-page h3 {
 	font-size:28px;
+	font-weight: 700;
 	margin:0 0 20px;
 	padding:0;
 	}
 	
 	.admin-front-register-page h4 {
 	font-size:20px;
+	font-weight: 700;
 	}
 	
 	.admin-front-register-page .row {
