@@ -547,7 +547,7 @@ class EditFieldModal extends Component {
                                                         checked={enArr.uploadOptions.pdf}
                                                         id="pdf"
                                                         handler={this.handleChangeUploadOption}
-                                                    /> .pdf
+                                                    /> 
                                                    <CheckOption
                                                         htmlFor="doc"
                                                         checked={enArr.uploadOptions.doc}
