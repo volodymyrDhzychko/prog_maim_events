@@ -1350,6 +1350,10 @@
 	.dark-mode .admin-front-register-page .registration-template .field-wrap .field-container .field-group .button-wrap input {
 		color: #fff; border-color: #fff;
 	}
+
+	.dark-mode .admin-front-register-page .social-icons img {
+		filter: brightness(0) invert(1);
+	}
 	
 	.admin-front-register-page .admin-front-register-form .field-wrap:nth-child(1),.admin-front-register-page .admin-front-register-form .field-wrap:nth-child(2) {
 	width:45%;
