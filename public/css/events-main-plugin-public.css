@@ -1231,11 +1231,10 @@
 	
 	.dark-mode .hero-scrollTo {
 	color:#000!important;
-	background-color:#fff;
 	}
-	
-	.dark-mode .admin-front-register-page .event-placeholder-image img {
-	filter:brightness(0) invert(1);
+
+	.dark-mode .hero-scrollTo path {
+		fill: #000;
 	}
 	
 	.site-footer .footer-logo svg {
@@ -1346,6 +1345,10 @@
 	
 	.dark_mode .admin-front-register-page .registration-template,.dark-mode .admin-front-register-page .registration-template {
 	background-color:transparent;
+	}
+
+	.dark-mode .admin-front-register-page .registration-template .field-wrap .field-container .field-group .button-wrap input {
+		color: #fff; border-color: #fff;
 	}
 	
 	.admin-front-register-page .admin-front-register-form .field-wrap:nth-child(1),.admin-front-register-page .admin-front-register-form .field-wrap:nth-child(2) {
