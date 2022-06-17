@@ -203,8 +203,8 @@ class EditFieldModal extends Component {
     };
 
     // TODO: Try tto add comments in your code. The general rule - your code should understandable for all new people in a team.. Read book "Чистый код_ создание, анализ и рефакторинг ( PDFDrive ).pdf"
-    deleteOption = (event) => {
-        const currentIndex = event.currentTarget.attributes.getNamedItem('index').value;
+    deleteOption = (event, index) => {
+        const currentIndex = index || event.currentTarget.attributes.getNamedItem('index')?.value;
         let editFieldData = this.state.editFieldData;
         const enOptionValues = this.state.enOptionValues.filter((cItem, index) => parseInt(index) !== parseInt(currentIndex));
         const arOptionValues = this.state.arOptionValues.filter((cItem, index) => parseInt(index) !== parseInt(currentIndex));
@@ -402,7 +402,7 @@ class EditFieldModal extends Component {
                                                                          }
                                                                         <span
                                                                             className="dashicons dashicons-no-alt remove-option-text"
-                                                                            onClick={this.deleteOption}/>
+                                                                            onClick={(event) => this.deleteOption(event, index)}/>
                                                                     </div>
                                                                 </Fragment>
                                                             ))
